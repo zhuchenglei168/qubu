@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<link rel="stylesheet" href="/static/libs/editor/themes/default/default.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-8">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>网站设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$site = json_decode($data['site'], true);</php>
+						<form class="site" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">网站标题</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="title" class="form-control" placeholder="必填" value="{$site.title}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">副标题</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="subtitle" class="form-control" placeholder="选填" value="{$site.subtitle}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">描述</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="description" class="form-control" placeholder="选填">{$site.description}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">关键字</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="keyword" class="form-control" placeholder="选填">{$site.keyword}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">备案</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="copyright" class="form-control" placeholder="选填" value="{$site.copyright}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">统计代码</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="tongji" class="form-control" placeholder="选填">{$site.tongji|htmlspecialchars_decode}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 lh-none p-r-sm">网站状态</label>
+								<div class="col xs-10 p-l-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$site['status']==1 ? 'checked' : ''}><i></i>正常</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$site['status']==0 ? 'checked' : ''}><i></i>冻结</label>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-r-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-coffee"></i>公司信息</h5>
+					</div>
+					<div class="panel-body">
+						<php>$company = json_decode($data['company'], true);</php>
+						<form class="company" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">公司名称</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="title" class="form-control" placeholder="必填" value="{$company.title}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">公司地址</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="address" class="form-control" placeholder="选填">{$company.address}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">邮箱地址</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="email" class="form-control" placeholder="选填" value="{$company.email}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">客服热线</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="tel" class="form-control" placeholder="选填" value="{$company.tel}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">客服QQ</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="qq" class="form-control" placeholder="选填" value="{$company.qq}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">官方QQ群</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="qqgroup" class="form-control" placeholder="选填" value="{$company.qqgroup}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">客服二维码</label>
+								<div class="col xs-10 p-l-sm">
+									<div class="input-group">
+										<input type="text" name="qrcode" id="qrcode" class="form-control" placeholder="选填" value="{$company.qrcode}">
+										<span class="input-group-btn"><button id="qrcode-btn" class="btn btn-default"><i class="fa fa-fw fa-image"></i></button></span>
+									</div>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-4">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-at"></i>邮件设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$smtp = json_decode($data['smtp'], true);</php>
+						<form class="smtp" method="post" autocomplete="off">
+							<div class="form-group m-b">
+								<label>smtp服务器</label>
+								<input type="text" name="host" class="form-control" placeholder="必填" value="{$smtp.host}">
+							</div>
+							<div class="form-group m-b">
+								<label>smtp端口</label>
+								<input type="text" name="port" class="form-control" placeholder="选填 默认25" value="{$smtp.port}">
+							</div>
+							<div class="form-group m-b">
+								<label>邮箱地址</label>
+								<input type="text" name="username" class="form-control" placeholder="必填" value="{$smtp.username}">
+							</div>
+							<div class="form-group m-b">
+								<label>密码</label>
+								<input type="password" name="password" class="form-control" placeholder="必填" value="{$smtp.password}">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-info">提交</button>
+								<button type="reset" class="btn btn-sm btn-danger">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-l-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-commenting-o"></i>短信接口</h5>
+					</div>
+					<div class="panel-body">
+						<php>$sms = json_decode($data['sms'], true);</php>
+						<form class="sms" method="post" autocomplete="off">
+							<div class="form-group m-b">
+								<label>接口账号</label>
+								<input type="text" name="username" class="form-control" placeholder="必填" value="{$sms.username}">
+							</div>
+							<div class="form-group m-b">
+								<label>接口密码</label>
+								<input type="text" name="password" class="form-control" placeholder="必填" value="{$sms.password}">
+							</div>
+                          <div class="form-group m-b">
+								<label>签名</label>
+								<input type="text" name="SignName" class="form-control" placeholder="必填" value="{$sms.SignName}">
+							</div>
+                          <div class="form-group m-b">
+								<label>注册模板Code</label>
+								<input type="text" name="regCode" class="form-control" placeholder="必填" value="{$sms.regCode}">
+							</div>
+                           <div class="form-group m-b">
+								<label>忘记密码模板Code</label>
+								<input type="text" name="forgetCode" class="form-control" placeholder="必填" value="{$sms.forgetCode}">
+							</div>
+                         <div class="form-group m-b">
+								<label>身份校验模板Code</label>
+								<input type="text" name="jiaoyanCode" class="form-control" placeholder="必填" value="{$sms.jiaoyanCode}">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-info">提交</button>
+								<button type="reset" class="btn btn-sm btn-danger">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/editor/kindeditor-min.js"></script>
+<script src="/static/libs/editor/zh_CN.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.site').submit(function(e){
+			$.tip('{:U('system/setting_site')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.company').submit(function(e){
+			$.tip('{:U('system/setting_company')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.smtp').submit(function(e){
+			$.tip('{:U('system/setting_smtp')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.sms').submit(function(e){
+			$.tip('{:U('system/setting_sms')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+	});
+
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+		});
+		K('#qrcode-btn').click(function(e){
+			editor.loadPlugin('image', function(){
+				editor.plugin.imageDialog({
+					imageUrl:K('#qrcode').val(),
+					clickFn:function(url){
+						K('#qrcode').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

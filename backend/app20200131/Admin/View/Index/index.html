@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>后台管理系统</title>
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/scrollbar/jquery.scrollbar.min.css">
+<link rel="stylesheet" href="/static/admin/css/common.css">
+<body>
+	<div class="container row">
+		<div id="sitebar" class="col xs-2">
+			<div class="logo"><i class="fa fa-fw fa-ge"></i></div>
+			<div class="user row">
+				<div class="avatar col xs-4"><img src="{$staff.avatar|default='/static/admin/img/avatar.jpg'}"></div>
+				<div class="info col xs-8">
+					<div class="username">{$staff['nickname'] ? $staff['nickname'] : $staff['username']}</div>
+					<div class="role">{$staff.role_title|default='超级管理员'}<i class="fa fa-fw fa-caret-down"></i></div>
+					<ul class="animated fadeInLeft">
+						<li><a class="iframe" href="http://ditu.amap.com/">高德地图</a></li>
+						<li class="line"></li>
+						<li><a class="iframe" href="{:U('staff/profile')}">我的设置</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="nav">
+				<ul class="on">
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-home"></i><b>控制面板</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+							<ol><a href="{:U('system/index')}"><i class="fa fa-fw fa-caret-right"></i>基础设置</a></ol>
+                          <ol><a href="{:U('system/mission')}"><i class="fa fa-fw fa-caret-right"></i>任务管理</a></ol>
+							<ol><a href="{:U('system/business')}"><i class="fa fa-fw fa-caret-right"></i>业务设置</a></ol>
+							<ol><a href="{:U('bonus/level')}"><i class="fa fa-fw fa-caret-right"></i>级别管理</a></ol>
+                          <ol><a href="{:U('bonus/star')}"><i class="fa fa-fw fa-caret-right"></i>星级达人</a></ol>
+                          <ol><a href="{:U('bonus/bank')}"><i class="fa fa-fw fa-caret-right"></i>银行管理</a></ol>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-user"></i><b>会员管理</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+							<ol><a href="{:U('user/index')}"><i class="fa fa-fw fa-caret-right"></i>会员列表</a></ol>
+                          <ol><a href="{:U('user/steplog')}"><i class="fa fa-fw fa-caret-right"></i>跑步记录</a></ol>
+                           <ol><a href="{:U('user/tangguolog')}"><i class="fa fa-fw fa-caret-right"></i>糖果明细</a></ol>
+                           <ol><a href="{:U('user/huoyuelog')}"><i class="fa fa-fw fa-caret-right"></i>活跃度明细</a></ol>
+                           <ol><a href="{:U('user/gongxianlog')}"><i class="fa fa-fw fa-caret-right"></i>贡献明细</a></ol>
+                          <ol><a href="{:U('user/usermission')}"><i class="fa fa-fw fa-caret-right"></i>会员任务</a></ol>
+                          <ol><a href="{:U('user/daish')}"><i class="fa fa-fw fa-caret-right"></i>实名会员</a></ol>
+							<ol><a href="{:U('user/relation')}"><i class="fa fa-fw fa-caret-right"></i>层级关系</a></ol>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-fire"></i><b>业务管理</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+							<ol><a href="{:U('product/index')}"><i class="fa fa-fw fa-caret-right"></i>商品列表</a></ol>
+                          <ol><a href="{:U('product/type')}"><i class="fa fa-fw fa-caret-right"></i>商品分类</a></ol>
+                         <ol><a href="{:U('slide/duoguo')}"><i class="fa fa-fw fa-caret-right"></i>国家管理</a></ol>
+							<ol><a href="{:U('order/index')}"><i class="fa fa-fw fa-caret-right"></i>订单列表</a></ol>
+                           <ol><a href="{:U('user/market')}"><i class="fa fa-fw fa-caret-right"></i>交易大厅</a></ol>
+                           <ol><a href="{:U('user/fk')}"><i class="fa fa-fw fa-caret-right"></i>用户反馈</a></ol>
+							<ol><a href="{:U('profit/index')}"><i class="fa fa-fw fa-caret-right"></i>分润列表</a></ol>
+						   <!--<ol><a href="{:U('profit/distrib')}"><i class="fa fa-fw fa-caret-right"></i>分润返点</a></ol>
+							<ol><a href="{:U('distrib/index')}"><i class="fa fa-fw fa-caret-right"></i>分销佣金</a></ol>-->
+							<ol><a href="{:U('bonus/index')}"><i class="fa fa-fw fa-caret-right"></i>奖金池</a></ol>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-book"></i><b>内容管理</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+						
+							<ol><a href="{:U('slide/index')}"><i class="fa fa-fw fa-caret-right"></i>幻灯管理</a></ol>
+							<ol><a href="{:U('help/index')}"><i class="fa fa-fw fa-caret-right"></i>帮助中心</a></ol>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-pie-chart"></i><b>财务管理</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+							<ol><a href="{:U('account/pay')}"><i class="fa fa-fw fa-caret-right"></i>付款记录</a></ol>
+							<ol><a href="{:U('account/cash')}"><i class="fa fa-fw fa-caret-right"></i>提现记录</a></ol>
+							<ol><a href="{:U('account/log')}"><i class="fa fa-fw fa-caret-right"></i>资金流水</a></ol>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3><a href=""><i class="fa fa-fw fa-user-md"></i><b>员工管理</b><span class="fa fa-fw fa-angle-left"></span><span class="fa fa-fw fa-angle-down"></span></a></h3>
+						<ul class="animated fadeInLeft">
+							<ol><a href="{:U('staff/index')}"><i class="fa fa-fw fa-caret-right"></i>员工列表</a></ol>
+							<ol><a href="{:U('staff/role')}"><i class="fa fa-fw fa-caret-right"></i>员工角色</a></ol>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="main" class="col xs-10">
+			<div class="navtabs">
+				<a id="menu" href=""><i class="fa fa-fw fa-outdent"></i><i class="fa fa-fw fa-indent"></i></a>
+				<a id="refresh" href=""><i class="fa fa-fw fa-refresh"></i>清空缓存</a>
+				<a id="logout" href=""><i class="fa fa-fw fa-sign-out"></i>注销</a>
+			</div>
+			<div class="content"><iframe name="iframe" src="{:U('index/main')}"></iframe></div>
+			<div class="copyright">&copy; 2016-{:date('Y')}</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/scrollbar/jquery.mousewheel.min.js"></script>
+<script src="/static/libs/scrollbar/jquery.scrollbar.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$.sitebar();
+		$('#logout').click(function(e){
+			$.tip('{:U('public/logout')}', '');
+			e.preventDefault();
+		});
+		$('#refresh').click(function(e){
+			$.tip('{:U('system/refresh')}', '');
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

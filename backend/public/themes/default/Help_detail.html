@@ -1,0 +1,10 @@
+<include file="Public/header" title="{$data.title}" />
+
+<body id="help-detail">
+	<include file="Public/nav" class="light" title="{$data.title}" />
+	<div class="container">
+		<div class="content typo">{$data.content|htmlspecialchars_decode}</div>
+	</div>
+</body>
+
+<include file="Public/footer" />

@@ -1,0 +1,35 @@
+<include file="Public/header" title="我的团队" />
+
+<link rel="stylesheet" href="{:cdn()}/static/libs/dropload/dropload.css">
+
+<body id="user-team">
+	<include file="Public/nav" title="我的团队" href="/user" />
+	<include file="Public/bar" on="user" />
+	<div class="container">
+		<div class="row info">
+			<div class="col"><p>有效直推人数</p><span>{$direct_num|intval}</span></div>
+			<div class="col center"><p>有效团队人数</p><span>{$team_num|intval}</span></div>
+			<div class="col"><p>团队总业绩/元</p><span>{$sum|array_sum}</span></div>
+		</div>
+	</div>
+	<empty name="list">
+		<div class="dropload-down"><div class="dropload-noData">暂无数据</div></div>
+	<else />
+		<foreach name="list" item="vo">
+			<div class="hd clear">
+				<h3>{$key+1}级分销</h3>
+				<span>消费总额<em>{$sum[$key]|default=0|trim_price}</em>元</span>
+			</div>
+			<ul class="bd item-content">
+				<foreach name="vo" item="v">
+					<li class="item-inner">
+						<div class="item-title"><img src="{$v.avatar|default='/themes/uzi/assets/img/avatar.png'|cdn}">{$v.id} <if condition="$v['consume'] eq 0"><span class="text-warning">未消费</span></if></div>
+						<div class="item-after">注册时间：{$v.create_time|date='Y/m/d H:i',###}</div>
+					</li>
+				</foreach>
+			</ul>
+		</foreach>
+	</empty>
+</body>
+
+<include file="Public/footer" />

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<link rel="stylesheet" href="/static/libs/editor/themes/default/default.css">
+<body class="p-none bg-white">
+	<div class="container">
+		<div class="panel">
+			<div class="panel-heading">
+				<h5><i class="fa fa-fw fa-pencil-square-o"></i>编辑帮助</h5>
+			</div>
+			<div class="panel-body">
+				<form class="edit" method="post" autocomplete="off">
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">标题</label>
+						<div class="col xs-11 p-l-sm">
+							<input type="text" name="title" class="form-control" placeholder="必填" value="{$data.title}">
+						</div>
+					</div>
+                     <div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">分类</label>
+						<div class="col xs-11 p-l-sm">
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="type" value="0" {$data['type']==0 ? 'checked' : ''}><i></i>公告</label>
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="type" value="1" {$data['type']==1 ? 'checked' : ''}><i></i>音频</label>
+                          <label class="i-check i-check-xs w-xxs"><input type="radio" name="type" value="2" {$data['type']==2 ? 'checked' : ''}><i></i>视频</label>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">英文标题</label>
+						<div class="col xs-11 p-l-sm">
+							<input type="text" name="entitle" class="form-control" placeholder="必填" value="{$data.entitle}">
+						</div>
+					</div>
+                  <div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">音视频</label>
+						<div class="col xs-11 p-l-sm">
+									<input type="text" name="cover" id="cover" class="form-control" placeholder="必填" value="{$data.cover}">
+									<span class="input-group-btn"><button id="cover-btn" class="btn btn-default"><i class="fa fa-fw fa-image"></i></button></span>
+								</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">缩略名</label>
+						<div class="col xs-11 p-l-sm">
+							<input type="text" name="slug" class="form-control" placeholder="必填" value="{$data.slug}">
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">跳转地址</label>
+						<div class="col xs-11 p-l-sm">
+							<input type="text" name="url" class="form-control" placeholder="选填" value="{$data.url}">
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">排序</label>
+						<div class="col xs-11 p-l-sm">
+							<input type="number" step="any" name="sort" class="form-control" placeholder="选填" value="{$data.sort}">
+							<span class="help m-t-xs">按数值倒序，可用小数点</span>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">正文</label>
+						<div class="col xs-11 p-l-sm">
+							<textarea name="content" class="form-control" placeholder="选填">{$data.content|htmlspecialchars_decode}</textarea>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 p-r-sm">英文正文</label>
+						<div class="col xs-11 p-l-sm">
+							<textarea name="encontent" class="form-control" placeholder="选填">{$data.encontent|htmlspecialchars_decode}</textarea>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 lh-none p-r-sm">首页滚动</label>
+						<div class="col xs-11 p-l-sm">
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="gundong" value="1" {$data['gundong']==1 ? 'checked' : ''}><i></i>滚动</label>
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="gundong" value="0" {$data['gundong']==0 ? 'checked' : ''}><i></i>不滚动</label>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-1 lh-none p-r-sm">状态</label>
+						<div class="col xs-11 p-l-sm">
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$data['status']==1 ? 'checked' : ''}><i></i>正常</label>
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$data['status']==0 ? 'checked' : ''}><i></i>冻结</label>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col xs-11 offset-1 p-l-sm">
+							<button type="submit" class="btn btn-sm btn-info">提交</button>
+							<a class="cancel btn btn-sm btn-danger" href="">取消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/editor/kindeditor-min.js"></script>
+<script src="/static/libs/editor/zh_CN.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.edit').submit(function(e){
+			$.tip(window.location.href, $(this).serialize(), 1);
+			e.preventDefault();
+		});
+	});
+
+	KindEditor.ready(function(K){
+		var editor = K.create('textarea[name="content"]', {
+			width:'100%',
+			height:'200px',
+			newlineTag:'br',
+			resizeType:false,
+			filterMode:false,
+			wellFormatMode:false,
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+			afterBlur:function(){
+				this.sync();
+			}
+		});
+		var editor = K.create('textarea[name="encontent"]', {
+			width:'100%',
+			height:'200px',
+			newlineTag:'br',
+			resizeType:false,
+			filterMode:false,
+			wellFormatMode:false,
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+			afterBlur:function(){
+				this.sync();
+			}
+		});
+      K('#cover-btn').click(function(e){
+			editor.loadPlugin('image', function(){
+				editor.plugin.imageDialog({
+					imageUrl:K('#cover').val(),
+					clickFn:function(url){
+						K('#cover').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

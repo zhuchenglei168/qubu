@@ -1,0 +1,30 @@
+<include file="Public/header" title="余额提现" />
+
+<link rel="stylesheet" href="{:cdn()}/static/libs/dropload/dropload.css">
+
+<body id="user-cash">
+	<include file="Public/nav" title="余额提现" href="/user" />
+	<include file="Public/bar" on="user" />
+	<div class="container">
+		<div class="used">可提现金额：<span>{$data.used|trim_price}</span>元</div>
+		<div class="info">
+			<div class="hd">输入提现金额<if condition="$conf['cash']['cash_fee']"><span>(提现手续费{$conf.cash.cash_fee}%)</span></if></div>
+			<div class="bd">
+				<div class="money"><sup>&yen;</sup><input type="number" name="money" autofocus></div>
+				<p>预计到账：<span class="real">0</span>元</p>
+			</div>
+		</div>
+	</div>
+	<div class="btn"><a class="button" href="#">立即提现</a></div>
+	<ul class="item-content list"></ul>
+</body>
+<script src="{:cdn()}/static/libs/dropload/dropload.min.js"></script>
+<script>
+	var used = {$data.used};
+	var cash_fee = {$conf.cash.cash_fee};
+	var cash_min = {$conf.cash.cash_min};
+	var cash_max = {$conf.cash.cash_max};
+    var page = 0;
+</script>
+
+<include file="Public/footer" />

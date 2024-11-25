@@ -1,0 +1,78 @@
+<include file="Public/header" title="{$conf['site']['title']}" />
+
+<body id="home">
+	<include file="Public/bar" on="home" />
+	<div class="slide" class="swiper-container">
+		<ul class="swiper-wrapper">
+			<foreach name="slide" item="vo">
+				<li class="swiper-slide"><a href="{$vo.url}"><img src="{$vo.cover}"></a></li>
+			</foreach>
+		</ul>
+		<div class="swiper-pagination"></div>
+	</div>
+	<div class="row help">
+		<div class="col"><a href="/help/start"><img src="{:cdn()}/themes/wukong/assets/img/icon-start.png"><p>新手帮助</p></a></div>
+		<div class="col center"><a href="/help/safe"><img src="{:cdn()}/themes/wukong/assets/img/icon-safe.png"><p>安全保障</p></a></div>
+		<div class="col"><a href="/help/about"><img src="{:cdn()}/themes/wukong/assets/img/icon-gift.png"><p>关于我们</p></a></div>
+	</div>
+	<div class="list" class="swiper-container">
+		<ul class="swiper-wrapper">
+			<foreach name="product" item="vo">
+				<li class="swiper-slide <empty name="vo.remain">off</empty>">
+					<div class="hd clear">
+						<h3>{$vo.title}<if condition="$vo['remain'] && $vo['remain'] lt 100"><span>库存<em>{$vo.remain}</em>份</span></if></h3>
+						<if condition="$vo['day_limit']"><span class="text-danger">每人每日限购{$vo.day_limit}份</span></if>
+					</div>
+					<div class="bd">
+						<div class="price"><p>项目投资金额</p><span><em>&yen;</em>{$vo.price|trim_price}</span></div>
+						<div class="row info">
+							<div class="col times">分润周期<span>{$vo.num}</span>次</div>
+							<div class="col profit">每<empty name="vo.type">天<else />{$vo.type}小时</empty>分润<span>{$vo.profit|trim_price}</span>元</div>
+						</div>
+						<div class="btn">
+							<empty name="vo.remain">
+								<a href="javascript:;">已售罄</a>
+								<p></p>
+							<else />
+								<a class="button" href="/buy/{$vo.id}">立即购买</a>
+							</empty>
+						</div>
+					</div>
+				</li>
+			</foreach>
+		</ul>
+		<div class="swiper-pagination"></div>
+	</div>
+	<footer>Copyright &copy;2017-2018 {$conf['site']['title']}</footer>
+</body>
+<link rel="stylesheet" href="{:cdn()}/static/libs/swiper/css/swiper.min.css">
+<script src="{:cdn()}/static/libs/swiper/js/swiper.min.js"></script>
+<script>
+	new Swiper('.slide', {
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true
+		},
+		autoplay: true,
+		loop: true
+	});
+	new Swiper('.list', {
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true
+		},
+		slidesPerView: 'auto',
+		centeredSlides: true,
+		spaceBetween: 20,
+		loop: true
+	});
+	<if condition="$conf['more']['msg_status'] eq 1">
+		layer.open({
+			title: ['系统公告', 'background-color:#44cec2;color:#fff'],
+			content: '{$conf.more.msg|htmlspecialchars_decode}',
+			btn: '我知道了'
+		});
+	</if>
+</script>
+
+<include file="Public/footer" />

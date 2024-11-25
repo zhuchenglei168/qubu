@@ -1,0 +1,10 @@
+<include file="Public/header" title="{$data.title}" />
+
+<link rel="stylesheet" href="{:cdn()}/static/libs/dropload/dropload.css">
+
+<body id="help">
+	<include file="Public/nav" title="{$data.title}" href="/" />
+	<div class="container typo">{$data.content|htmlspecialchars_decode}</div>
+</body>
+
+<include file="Public/footer" />

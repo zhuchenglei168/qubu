@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>登录管理后台</title>
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/admin/css/login.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div id="login">
+			<form method="post" autocomplete="off">
+				<h1>登录管理后台</h1>
+				<div class="form-group"><input type="text" name="username" placeholder="用户名" autofocus></div>
+				<div class="form-group b-t"><input type="password" name="password" placeholder="密码"></div>
+				<div class="form-group input-group">
+					<input type="text" name="vcode" maxlength="4" placeholder="验证码">
+					<span class="vcode"><img src="{:U('public/vcode')}" onclick="this.src='{:U('public/vcode')}?'+Math.random();"></span>
+				</div>
+				<div class="form-group m-t"><button><i class="fa fa-fw fa-arrow-circle-right"></i>登录</button></div>
+			</form>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	if (self != top) window.top.location.href = window.location.href;
+	$(function(){
+		$('#login form').submit(function(e){
+			$.tip(window.location.href, $(this).serialize());
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

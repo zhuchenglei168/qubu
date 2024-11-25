@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-8">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>系统基本参数设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$jiben = json_decode($data['jiben'], true);</php>
+						<form class="jiben" method="post" autocomplete="off">
+							
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">开启注册</label>
+								<div class="col xs-10 p-l-sm p-t-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="reg_status" value="1" {$jiben['reg_status']==1 ? 'checked' : ''}><i></i>开启</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="reg_status" value="0" {$jiben['reg_status']==0 ? 'checked' : ''}><i></i>关闭</label>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">安卓APP下载地址</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="appdizhi" class="form-control" placeholder="必填" value="{$jiben.appdizhi}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">安卓APP版本号</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="azbbh" class="form-control" placeholder="必填" value="{$jiben.azbbh}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">苹果APP下载地址</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="iosappdizhi" class="form-control" placeholder="必填" value="{$jiben.iosappdizhi}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">苹果APP版本号</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="iosbbh" class="form-control" placeholder="必填" value="{$jiben.iosbbh}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">安卓APP英文版下载地址</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="appdizhien" class="form-control" placeholder="必填" value="{$jiben.appdizhien}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">安卓APP英文版版本号</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="azbbhen" class="form-control" placeholder="必填" value="{$jiben.azbbhen}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">苹果APP英文版下载地址</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="iosappdizhien" class="form-control" placeholder="必填" value="{$jiben.iosappdizhien}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">苹果APP英文版版本号</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="iosbbhen" class="form-control" placeholder="必填" value="{$jiben.iosbbhen}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">英文版域名</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="enurl" class="form-control" placeholder="必填" value="{$jiben.enurl}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">注册赠送活跃度</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="regsonghyd" class="form-control" placeholder="必填" value="{$jiben.regsonghyd}">
+								</div>
+							</div>
+                          
+                          <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">直推一个用户增加贡献值</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="tgsonggxz" class="form-control" placeholder="必填" value="{$jiben.tgsonggxz}">
+								</div>
+							</div>
+                          <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">直推一个用户增加活跃度</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="tgsonghyd" class="form-control" placeholder="必填" value="{$jiben.tgsonghyd}">
+								</div>
+							</div>
+                           <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">直推用户兑换卷轴增加活跃度（%）</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="dhjzjiahyd" class="form-control" placeholder="必填" value="{$jiben.dhjzjiahyd}">
+								</div>
+							</div>
+							 <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">基础变量</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="bianliang" class="form-control" placeholder="必填" value="{$jiben.bianliang}">
+								</div>
+							</div>
+                           <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">加入或创建俱乐部增加活跃度</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="jiajulebuhyd" class="form-control" placeholder="必填" value="{$jiben.jiajulebuhyd}">
+								</div>
+							</div>
+                          <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">加入或创建组队增加活跃度</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="jiazuduihyd" class="form-control" placeholder="必填" value="{$jiben.jiazuduihyd}">
+								</div>
+							</div>
+                           <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">每日基础步数</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="jichutemp" class="form-control" placeholder="必填" value="{$jiben.jichutemp}">
+                                  每日糖果产出收益=基础变量*卷轴基本活跃度*卷轴任务步数+基础变量*活跃度*每日基础步数
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+              <div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>交易大厅设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$more = json_decode($data['more'], true);</php>
+						<form class="more" method="post" autocomplete="off">
+							
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">开启交易</label>
+								<div class="col xs-10 p-l-sm p-t-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="change_status" value="1" {$more['change_status']==1 ? 'checked' : ''}><i></i>开启</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="change_status" value="0" {$more['change_status']==0 ? 'checked' : ''}><i></i>关闭</label>
+								</div>
+							</div>
+							
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">交易价格最高</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="max" class="form-control" placeholder="选填" value="{$more.max}">
+								</div>
+							</div>
+                          
+                          <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">交易价格最低</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="min" class="form-control" placeholder="选填" value="{$more.min}">
+								</div>
+							</div>
+							 <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">今日价格</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="jinri" class="form-control" placeholder="选填" value="{$more.jinri}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">糖果数量低于这个值使用最低价</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="minnum" class="form-control" placeholder="选填" value="{$more.minnum}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">糖果数量低于这个值不能购买别人订单</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="buyminnum" class="form-control" placeholder="选填" value="{$more.buyminnum}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">卖糖果不能低于这个值</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="sellminnum" class="form-control" placeholder="选填" value="{$more.sellminnum}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">交易自动取消时间（秒）</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="timelimit" class="form-control" placeholder="选填" value="{$more.timelimit}">
+								</div>
+							</div>
+                          <div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">发布卖单超时取消时间（秒）</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="chaoshilimit" class="form-control" placeholder="必填" value="{$more.chaoshilimit}">
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-r-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>分销设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$distrib = json_decode($data['distrib'], true);</php>
+						<form class="distrib" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">当前状态</label>
+								<div class="col xs-9 p-l-sm p-t-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$distrib['status']==1 ? 'checked' : ''}><i></i>开启</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$distrib['status']==0 ? 'checked' : ''}><i></i>关闭</label>
+								</div>
+							</div>
+							<div class="line line-dashed"></div>
+							<div class="levelNum row form-group m-b">
+								<label class="col xs-3 p-r-sm">分销层级</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" class="form-control" value="{$distrib.level|count}"><span class="input-group-addon">级</span></div>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">购买者</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" name="self" class="form-control" value="{$distrib.self}"><span class="input-group-addon">%</span></div>
+									<span class="help m-t-xs">付款金额百分比 默认0 不赠送</span>
+								</div>
+							</div>
+							<div class="level">
+								<foreach name="distrib.level" item="vo">
+									<div class="row form-group m-b"><label class="col xs-3 p-r-sm">{$key+1}级</label><div class="col xs-9 p-l-sm w-md"><div class="input-group"><input type="text" name="level[]" class="form-control" value="{$vo}"><span class="input-group-addon">%</span></div></div></div>
+								</foreach>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-9 offset-3 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!--<div class="panel m-r-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>快返分销设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$distrib_sec = json_decode($data['distrib_sec'], true);</php>
+						<form class="distrib_sec" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">当前状态</label>
+								<div class="col xs-9 p-l-sm p-t-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$distrib_sec['status']==1 ? 'checked' : ''}><i></i>开启</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$distrib_sec['status']==0 ? 'checked' : ''}><i></i>关闭</label>
+								</div>
+							</div>
+							<div class="line line-dashed"></div>
+							<div class="levelNum row form-group m-b">
+								<label class="col xs-3 p-r-sm">分销层级</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" class="form-control" value="{$distrib_sec.level|count}"><span class="input-group-addon">级</span></div>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">购买者</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" name="self" class="form-control" value="{$distrib_sec.self}"><span class="input-group-addon">%</span></div>
+									<span class="help m-t-xs">付款金额百分比 默认0 不赠送</span>
+								</div>
+							</div>
+							<div class="level">
+								<foreach name="distrib_sec.level" item="vo">
+									<div class="row form-group m-b"><label class="col xs-3 p-r-sm">{$key+1}级</label><div class="col xs-9 p-l-sm w-md"><div class="input-group"><input type="text" name="level[]" class="form-control" value="{$vo}"><span class="input-group-addon">%</span></div></div></div>
+								</foreach>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-9 offset-3 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-r-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>分润返点设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$distrib_profit = json_decode($data['distrib_profit'], true);</php>
+						<form class="distrib_profit" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">当前状态</label>
+								<div class="col xs-9 p-l-sm p-t-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$distrib_profit['status']==1 ? 'checked' : ''}><i></i>开启</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$distrib_profit['status']==0 ? 'checked' : ''}><i></i>关闭</label>
+								</div>
+							</div>
+							<div class="line line-dashed"></div>
+							<div class="levelNum row form-group m-b">
+								<label class="col xs-3 p-r-sm">返点层级</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" class="form-control" value="{$distrib_profit.level|count}"><span class="input-group-addon">级</span></div>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-3 p-r-sm">分润用户</label>
+								<div class="col xs-9 p-l-sm w-md">
+									<div class="input-group"><input type="text" name="self" class="form-control" value="{$distrib_profit.self}"><span class="input-group-addon">%</span></div>
+									<span class="help m-t-xs">分润金额百分比 默认0 不赠送</span>
+								</div>
+							</div>
+							<div class="level">
+								<foreach name="distrib_profit.level" item="vo">
+									<div class="row form-group m-b"><label class="col xs-3 p-r-sm">{$key+1}级</label><div class="col xs-9 p-l-sm w-md"><div class="input-group"><input type="text" name="level[]" class="form-control" value="{$vo}"><span class="input-group-addon">%</span></div></div></div>
+								</foreach>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-9 offset-3 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>-->
+			</div>
+			<div class="col xs-4">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-money"></i>提现设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$cash = json_decode($data['cash'], true);</php>
+						<form class="cash" method="post" autocomplete="off">
+							<div class="form-group m-b">
+								<label>提现手续费</label>
+								<div class="input-group"><input type="text" name="cash_fee" class="form-control" placeholder="选填 默认0" value="{$cash.cash_fee}"><span class="input-group-addon">%</span></div>
+							</div>
+							<div class="form-group m-b">
+								<label>消费满可提现</label>
+								<div class="input-group"><input type="text" name="cash_limit" class="form-control" placeholder="选填 默认0" value="{$cash.cash_limit}"><span class="input-group-addon">元</span></div>
+							</div>
+							<div class="form-group m-b">
+								<label>单笔最小提现</label>
+								<div class="input-group"><input type="text" name="cash_min" class="form-control" placeholder="选填 默认100" value="{$cash.cash_min}"><span class="input-group-addon">元</span></div>
+							</div>
+							<div class="form-group m-b">
+								<label>单笔最大提现</label>
+								<div class="input-group"><input type="text" name="cash_max" class="form-control" placeholder="选填 默认0 不限制" value="{$cash.cash_max}"><span class="input-group-addon">元</span></div>
+							</div>
+							<div class="form-group m-b">
+								<label>单日提现次数</label>
+								<div class="input-group"><input type="text" name="cash_num" class="form-control" placeholder="选填 默认0 不限制" value="{$cash.cash_num}"><span class="input-group-addon">次</span></div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-info">提交</button>
+								<button type="reset" class="btn btn-sm btn-danger">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-l-sm m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gratipay"></i>支付宝设置</h5>
+					</div>
+					<div class="panel-body">
+						<php>$cash = json_decode($data['cash'], true);</php>
+						<form class="alipay" method="post" autocomplete="off">
+							<div class="form-group m-b">
+								<label>支付商户号</label>
+								<input type="text" name="pay_id" class="form-control" placeholder="必填 AppId" value="{$alipay.pay.app_id}">
+							</div>
+							<div class="form-group m-b">
+								<label>支付公钥</label>
+								<textarea name="pay_public_key" class="form-control" placeholder="必填 支付宝公钥">{$alipay.pay.alipay_public_key}</textarea>
+							</div>
+							<div class="form-group m-b">
+								<label>支付私钥</label>
+								<textarea name="pay_private_key" class="form-control" placeholder="必填 商户私钥">{$alipay.pay.merchant_private_key}</textarea>
+							</div>
+							<div class="line line-dashed"></div>
+							<div class="form-group m-b">
+								<label>提现商户号</label>
+								<input type="text" name="cash_id" class="form-control" placeholder="选填 AppId" value="{$alipay.cash.app_id}">
+								<span class="help m-t-xs">留空则默认使用支付商户</span>
+							</div>
+							<div class="form-group m-b">
+								<label>提现公钥</label>
+								<textarea name="cash_public_key" class="form-control" placeholder="选填 支付宝公钥">{$alipay.cash.alipay_public_key}</textarea>
+							</div>
+							<div class="form-group m-b">
+								<label>提现私钥</label>
+								<textarea name="cash_private_key" class="form-control" placeholder="选填 商户私钥">{$alipay.cash.merchant_private_key}</textarea>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-info">提交</button>
+								<button type="reset" class="btn btn-sm btn-danger">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.more').submit(function(e){
+			$.tip('{:U('system/setting_more')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+      $('form.jiben').submit(function(e){
+			$.tip('{:U('system/setting_jiben')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.distrib').submit(function(e){
+			$.tip('{:U('system/setting_distrib')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.distrib_sec').submit(function(e){
+			$.tip('{:U('system/setting_distrib_sec')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.distrib_profit').submit(function(e){
+			$.tip('{:U('system/setting_distrib_profit')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.cash').submit(function(e){
+			$.tip('{:U('system/setting_cash')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+		$('form.alipay').submit(function(e){
+			$.tip('{:U('system/setting_alipay')}', $(this).serialize(), 1);
+			e.preventDefault();
+		});
+
+		// 层级动态输入框
+		$('.levelNum input').change(function(){
+			var level = $(this).parents('form').find('.level');
+			var levelNum = parseInt($(this).val());
+			if (levelNum > 0) {
+				level.html('');
+				for (var i = 1; i <= levelNum; i++) {
+					level.append('<div class="row form-group m-b"><label class="col xs-3 p-r-sm">'+i+'级</label><div class="col xs-9 p-l-sm w-md"><div class="input-group"><input type="text" name="level[]" class="form-control"><span class="input-group-addon">%</span></div></div></div>');
+				}
+			} else {
+				level.html('');
+			}
+		});
+	});
+</script>
+</html>

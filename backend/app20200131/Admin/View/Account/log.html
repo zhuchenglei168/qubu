@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-12">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-list"></i>资金流水</h5>
+					</div>
+					<div class="panel-toolbar">
+						<form class="form-inline" method="get" autocomplete="off">
+							<div class="btn-group">
+								<a class="btn btn-sm btn-default {:!isset($_GET['time']) ? 'active' : ''}" href="{:U('account/log')}">全部</a>
+								<a class="btn btn-sm btn-default {:isset($_GET['time']) && I('get.time')==1 ? 'active' : ''}" href="{:U('account/log', array('time'=>1))}">今</a>
+								<a class="btn btn-sm btn-default {:isset($_GET['time']) && I('get.time')==2 ? 'active' : ''}" href="{:U('account/log', array('time'=>2))}">昨</a>
+								<a class="btn btn-sm btn-default {:isset($_GET['time']) && I('get.time')==3 ? 'active' : ''}" href="{:U('account/log', array('time'=>3))}">周</a>
+								<a class="btn btn-sm btn-default {:isset($_GET['time']) && I('get.time')==4 ? 'active' : ''}" href="{:U('account/log', array('time'=>4))}">月</a>
+							</div>
+							<div class="form-group m-l-sm">
+								<input type="text" name="phone" class="form-control input-sm" placeholder="手机号码" value="{:I('get.phone')}">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-default"><i class="fa fa-fw fa-filter"></i>筛选</button>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body">
+						<form class="list">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>所属用户</th>
+										<th>变动金额</th>
+										<th>变动后余额</th>
+										<th>变动类型</th>
+										<th>创建时间</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+										<tr>
+											<td>{$vo.id}</td>
+											<td>{$vo.phone}</td>
+											<td>{$vo.change}</td>
+											<td>{$vo.total|trim_price}</td>
+											<td>{$vo.type|get_stead=###,array(1=>'申请提现', 2=>'提现成功', 3=>'提现取消', 4=>'余额支付', 11=>'分润收益', 12=>'分销收益', 13=>'分红收益', 13=>'分润返点')}</td>
+											<td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+										</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</form>
+						<div class="pagination m-t-md">{$page}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('.del').click(function(){
+			var ids = $('form.list').serialize();
+			if (ids) {
+				layer.confirm('确认要删除这些记录?', {title:'提示信息'}, function(index){
+					$.tip('{:U('account/log_del')}', ids);
+					layer.close(index);
+				});
+			} else {
+				layer.msg('至少选择一条记录', {anim: 6});
+			}
+		});
+		$('form.list table th label').click(function(){
+			if ($(this).find('input').is(':checked')) {
+				$(this).parents('table').find('td input').prop('checked', true);
+			} else {
+				$(this).parents('table').find('td input').prop('checked', false);
+			}
+		});
+	});
+</script>
+</html>

@@ -1,0 +1,112 @@
+{wc:templates "index","header"}
+<div class="main-content clearfix">
+{wc:templates "member","left"}
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.css"/>
+<link rel="stylesheet" type="text/css" href="{G_TEMPLATES_STYLE}/css/user.message.css"/>
+<script type="text/javascript">
+$(function(){		
+	var demo=$(".registerform").Validform({
+		tiptype:2,
+		datatype:{
+			"tel":/([a-z][A-Z][0-9])+/,
+			"nic":/^[A-Za-z0-9_\u4e00-\u9fa5]{2,20}$/,
+		},
+	});	
+	demo.tipmsg.w["tel"]="请正确输入电话号码(区号、号码必填，用“-”隔开)";
+	demo.tipmsg.w["nic"]="昵称为2-20个汉字、字母、数字、“_”字符组成";
+	demo.addRule([
+	{
+		ele:"#nicxx",
+		datatype:"nic",
+	},
+	{
+		ele:"#txt_ship_tel",
+		datatype:"tel",
+	}]);
+});
+</script>
+<style>
+.info table td label {
+color: #666;
+font-size: 12px;
+text-align: right;
+}
+</style>
+<div class="R-content">
+
+	<div class="info">
+	<form class="registerform" method="post" action="">
+		<table border="0" cellpadding="0" cellspacing="8">
+			<tr>
+					
+				<td align="right"><em><font>*</font><label>夺宝币：</label></em></td>
+				<td>
+					<b>{wc:$info['money']}</b> 
+				</td>
+				
+			<tr>
+				<td align="right"><em><font>*</font><label>转帐金额：</label></em></td>
+				<td>
+					<input name="money" value="" onkeyup="value=value.replace(/\D/g,'')" type="text"  class="txt gray" maxlength="20" />					
+				</td>					
+
+			</tr>
+			<tr>
+				<td align="right"><em><font>*</font><label>转入用户：</label></em></td>
+				<td>
+					<input name="txtBankName" value="" type="text"  class="txt gray" maxlength="20" />					
+				</td>					
+			</tr>
+			<tr>
+				<td align="right"><em><font>*</font><label>确认用户：</label></em></td>
+				<td>
+					<input name="txtBankName1" value="" type="text"  class="txt gray" maxlength="20" />					
+				</td>					
+
+			</tr>
+			<tr>
+				<td><em>&nbsp;</em></td>
+				<td><input name="submit1" type="submit" class="bluebut" value="保存"></td>
+			</tr>
+		</table>
+	</form>	
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	$(".yu_ff").mouseover(function(){
+	  $(".h_1yyg_eject").show();
+	})
+	$(".yu_ff").mouseout(function(){
+	  $(".h_1yyg_eject").hide();
+	})
+
+		     $("#m_all_sort").hide();
+	     $(".m_menu_all").mouseenter(function(){
+			    $(".m_all_sort").show();
+	     })
+		 $(".m_menu_all").mouseleave(function(){
+			    $(".m_all_sort").hide();
+	     })
+		 $(".m_all_sort").mouseenter(function(){
+			    $(this).show();
+	     })
+		 $(".m_all_sort").mouseleave(function(){
+			    $(this).hide();
+	     })
+	     $(function(){
+	       $(window).scroll(function() {	
+	      		
+	     		if($(window).scrollTop()>=130&&$(window).scrollTop()<=560){
+	     			$(".head_nav").addClass("fixedNav");	
+	     			$("#m_all_sort").fadeOut();
+	     		}else if($(window).scrollTop()>560){
+	     			$(".head_nav").addClass("fixedNav");
+	     			$("#m_all_sort").fadeOut();
+	     	} else if($(window).scrollTop()<130){
+	     			$(".head_nav").removeClass("fixedNav");
+	     	}
+	           });
+	     });
+</script>
+{wc:templates "index","footer"}

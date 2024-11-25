@@ -1,0 +1,35 @@
+<include file="Public/header" title="用户注册" />
+
+<body id="reg" class="hxd">
+	<div class="container">
+		<form>
+			<div class="row">
+				<label for="phone">手机号</label>
+				<input type="tel" name="phone" id="phone" maxlength="13" autocomplete="off">
+			</div>
+			<div class="row pwd">
+				<label for="password">设置密码</label>
+				<input type="password" name="password" id="password" maxlength="18">
+				<i class="iconfont icon-pwd-hide"></i>
+			</div>
+			<div class="row">
+				<label for="alipay">支付宝账号</label>
+				<input type="text" name="alipay" id="alipay">
+			</div>
+			<div class="row">
+				<label for="realname">支付宝姓名</label>
+				<input type="text" name="realname" id="realname">
+			</div>
+			<if condition="$from">
+				<div class="row">
+					<label class="on">邀请人手机号</label>
+					<input type="tel" value="{$from.phone|get_hide=###,3,6}" disabled>
+				</div>
+			</if>
+			<div class="row btn"><button type="submit" disabled>立即注册</button></div>
+			<div class="row tip">已有账号？<a href="/user/login">现在登录</a></div>
+		</form>
+	</div>
+</body>
+
+<include file="Public/footer" />

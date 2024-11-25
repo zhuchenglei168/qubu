@@ -1,0 +1,40 @@
+<include file="Public/header" title="用户验证" />
+
+<!-- <style>
+#alipay::-webkit-input-placeholder{color:#f60;}
+#alipay::-moz-placeholder{color:#f60;}
+#alipay:-moz-placeholder{color:#f60;}
+#alipay:-ms-input-placeholder{color:#f60;}
+#realname::-webkit-input-placeholder{color:#f60;}
+#realname::-moz-placeholder{color:#f60;}
+#realname:-moz-placeholder{color:#f60;}
+#realname:-ms-input-placeholder{color:#f60;}
+</style> -->
+<if condition="$isweixin eq 1"> 
+  <body style="background: #0a0b0f;">
+
+	<div class="container">
+		<img src="/fenxiang.jpg" style="width:100%">
+	</div>
+</body>
+
+<else /> 
+  <body id="reg" class="uu">
+
+	<div class="container">
+		<form>
+			<div class="logo"><img src="{:cdn()}/themes/default/assets/img/logo.png"></div>
+		
+
+<div class="row tip"><a href="{$iosdizhi}">下载中文iPhone版</a></div>
+			<div class="row tip"><a href="{$azdizhi}">下载中文Android版</a></div>
+<div class="row tip"><a href="{$azdizhien}">下载英文Android版</a></div>
+		</form>
+	</div>
+</body>
+  
+</if>
+
+
+
+<include file="Public/footer" />

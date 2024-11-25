@@ -1,0 +1,77 @@
+<include file="Public/header" title="账户中心" />
+
+<body id="user">
+	<include file="Public/bar" on="user" />
+	<div class="container">
+		<div class="row profile">
+			<div class="col avatar"><img src="{$user.avatar|default='/themes/uzi/assets/img/avatar.png'|cdn}"></div>
+			<ul class="col info">
+				<li class="phone">ID：{$user.id}<span>（推荐人：{$user['invite_id'] ? $user['invite_id'] : '系统'}）</span></li>
+				<li>注册时间：{$user.create_time|date='Y-m-d H:i',###}</li>
+			</ul>
+		</div>
+		<div class="account"><a class="row" href="/user/cash">
+			<div class="col"><p>可提现金额</p><span>{$account.used}</span></div>
+			<div class="col"><p>收益累计</p><span>{$income}</span></div>
+		</a></div>
+		<div class="row list">
+			<ul class="item-content">
+				<li><a class="item-inner item-link" href="/user/order">
+					<i class="iconfont icon-order"></i>
+					<div class="item-title">购买记录</div>
+					<div class="item-after">点击查看每日分润</div>
+				</a></li>
+				<li><a class="item-inner item-link" href="/user/distrib_profit">
+					<i class="iconfont icon-profit"></i>
+					<div class="item-title">分润返点</div>
+				</a></li>
+				<li><a class="item-inner item-link" href="/user/distrib">
+					<i class="iconfont icon-log"></i>
+					<div class="item-title">分销记录</div>
+				</a></li>
+				<li><a class="item-inner item-link" href="/user/bonus">
+					<i class="iconfont icon-bonus"></i>
+					<div class="item-title">奖金池</div>
+					<div class="item-after">每日流水分红</div>
+				</a></li>
+				<li><a class="item-inner item-link" href="/user/team">
+					<i class="iconfont icon-team"></i>
+					<div class="item-title">我的团队</div>
+				</a></li>
+				<li><a class="item-inner item-link" href="/user/share">
+					<i class="iconfont icon-share"></i>
+					<div class="item-title">邀请好友</div>
+				</a></li>
+			</ul>
+			<ul class="item-content">
+				<li><a class="item-inner item-link" href="/user/password">
+					<i class="iconfont icon-lock"></i>
+					<div class="item-title">修改密码</div>
+				</a></li>
+				<if condition="$conf['company']['qrcode']"><li><a class="item-inner item-link" href="#" id="service">
+					<i class="iconfont icon-service"></i>
+					<div class="item-title">联系客服</div>
+				</a></li></if>
+				<if condition="!C('WECHAT_AUTH') || !is_wechat()"><li><a class="item-inner item-link" href="#" id="logout">
+					<i class="iconfont icon-logout"></i>
+					<div class="item-title">退出</div>
+				</a></li></if>
+			</ul>
+		</div>
+	</div>
+	<footer>Copyright &copy;2017-2018 {$conf['site']['title']}</footer>
+</body>
+
+<script>
+	$(function(){
+		$('#service').click(function(){
+			layer.open({
+				title: ['请扫描客服二维码', 'background-color:#ff8c19;color:#fff'],
+				content: '<img width="80%" src="{$conf.company.qrcode}">'
+			});
+			return false;
+		});
+	});
+</script>
+
+<include file="Public/footer" />

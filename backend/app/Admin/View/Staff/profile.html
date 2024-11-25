@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<style>
+.cropbox{position:relative; width:190px; height:190px; background:#fff; overflow:hidden; background-repeat:no-repeat; cursor:move;}
+.cropbox .thumb{position:absolute; top:50%; left:50%; width:120px; height:120px; margin-top:-60px; margin-left:-60px; border:1px solid rgba(255,255,255,.2); box-shadow:0 0 0 1000px rgba(0,0,0,.5);}
+.cropbox .thumb tr, .cropbox .thumb td{border:1px dashed rgba(255,255,255,.2);}
+.cropbox .spinner{display:none; position:absolute; top:0; left:0; bottom:0; right:0; text-align:center; line-height:190px; background:rgba(0,0,0,.7);}
+.cropbox #cropfile{width:0; height:0; overflow:hidden;}
+.cropbtn{width:190px;}
+.cropped h3{margin:15px 0; font-weight:bold;}
+.cropped img{vertical-align:top;}
+</style>
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-6 p-r-sm">
+				<div class="panel">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>我的设置</h5>
+					</div>
+					<div class="system panel-body">
+						<form class="profile" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">真实姓名</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="realname" class="form-control" placeholder="选填" value="{$data.realname}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">昵称</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="nickname" class="form-control" placeholder="选填" value="{$staff.nickname}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">手机</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="phone" class="form-control" placeholder="选填" value="{$data.phone}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">邮箱</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="email" class="form-control" placeholder="选填" value="{$data.email}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">QQ</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="qq" class="form-control" placeholder="选填" value="{$data.qq}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">微信</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="text" name="wechat" class="form-control" placeholder="选填" value="{$data.wechat}">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">联系地址</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="address" class="form-control" placeholder="选填">{$data.address}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">自我介绍</label>
+								<div class="col xs-10 p-l-sm">
+									<textarea name="intro" class="form-control" placeholder="选填">{$data.intro}</textarea>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 lh-none p-r-sm">状态</label>
+								<div class="col xs-10 p-l-sm">
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$data['status']==1 ? 'checked' : ''}><i></i>公开</label>
+									<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$data['status']==0 ? 'checked' : ''}><i></i>不公开</label>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-6 p-l-sm">
+				<div class="panel">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-lock"></i>修改密码</h5>
+					</div>
+					<div class="panel-body">
+						<form class="password" method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">新密码</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="password" name="password" class="form-control" placeholder="必填">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">确认密码</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="password" name="checkpass" class="form-control" placeholder="必填">
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">提交</button>
+									<button type="reset" class="btn btn-sm btn-danger">重置</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="panel m-t-md">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-user-circle"></i>修改头像</h5>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col xs-6 p-l-sm">
+								<div class="cropbox">
+									<table class="thumb">
+										<tr><td></td><td></td><td></td></tr>
+										<tr><td></td><td></td><td></td></tr>
+										<tr><td></td><td></td><td></td></tr>
+									</table>
+									<div class="spinner"><i class="fa fa-fw fa-spin fa-spinner"></i></div>
+									<input type="file" id="cropfile">
+								</div>
+								<div class="cropbtn m-t pull-clear">
+									<button class="choose btn btn-sm btn-success w-xs pull-left">选择文件</button>
+									<button class="crop btn btn-sm btn-danger w-xs pull-right">裁剪</button>
+								</div>
+							</div>
+							<div class="cropped col xs-5 p-l-md">
+								<h3>裁剪预览</h3>
+								<div><img class="w-xs m-r-md" src="/static/admin/img/default.png"><img class="w-xxs" src="/static/admin/img/default.png"></div>
+								<button class="save btn btn-sm btn-default m-t" disabled>保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/jquery.cropbox.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		var options = {thumbBox:'.thumb', spinner:'.spinner', imgSrc:'/static/admin/img/avatar.jpg'}
+		var cropper = $('.cropbox').cropbox(options);
+		$('.cropbtn .choose').click(function(){
+			$('#cropfile').click();
+		});
+		$('#cropfile').change(function(){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				options.imgSrc = e.target.result;
+				cropper = $('.cropbox').cropbox(options);
+			}
+			reader.readAsDataURL(this.files[0]);
+			this.files = [];
+		});
+		$('.cropbtn .crop').click(function(){
+			var img = cropper.getDataURL();
+			$('.cropped div').html('<img class="w-xs m-r-md" src="'+img+'"><img class="w-xxs" src="'+img+'">');
+			$('.cropped .save').removeClass('btn-default').addClass('btn-info').attr('disabled', null);
+		});
+
+		$('form.profile').submit(function(e){
+			$.tip('{:U('staff/profile')}', $(this).serialize());
+			e.preventDefault();
+		});
+
+		$('form.password').submit(function(e){
+			$.tip('{:U('staff/password')}', $(this).serialize());
+			e.preventDefault();
+		});
+
+		$('.cropped .save').click(function(e){
+			$.tip('{:U('staff/avatar')}', {'avatar': $('.cropped img').first().attr('src')});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

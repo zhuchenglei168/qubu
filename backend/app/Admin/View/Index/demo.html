@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row m-b-md">
+			<div class="col xs-6">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5>表单<small>基本</small></h5>
+					</div>
+					<div class="panel-body">
+						<form method="post" autocomplete="off">
+							<div class="form-group m-b">
+								<label>Email address</label>
+								<input type="email" class="form-control" placeholder="Enter email">
+							</div>
+							<div class="form-group m-b">
+								<label>Password</label>
+								<input type="password" class="form-control" placeholder="Password">
+							</div>
+							<div class="form-group m-b">
+								<label class="i-check"><input type="checkbox" checked disabled><i></i>Check me out</label>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-primary">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-6">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5>表单<small>横向</small></h5>
+					</div>
+					<div class="panel-body">
+						<form method="post" autocomplete="off">
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">Email</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="email" class="form-control" placeholder="Email">
+									<span class="help m-t-xs">Example block-level help text here.</span>
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<label class="col xs-2 p-r-sm">Password</label>
+								<div class="col xs-10 p-l-sm">
+									<input type="password" class="form-control" placeholder="Password">
+								</div>
+							</div>
+							<div class="row form-group m-b">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<label class="i-check"><input type="checkbox" checked><i></i>Remember me</label>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col xs-10 offset-2 p-l-sm">
+									<button type="submit" class="btn btn-sm btn-info">Sign in</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel m-b-md">
+			<div class="panel-heading">
+				<h5>表单<small>内联</small></h5>
+			</div>
+			<div class="panel-body">
+				<form class="form-inline" method="post" autocomplete="off">
+					<div class="form-group">
+						<label class="sr-only">Email address</label>
+						<input type="email" class="form-control" placeholder="Enter email">
+					</div>
+					<div class="form-group">
+						<label class="sr-only">Password</label>
+						<input type="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-group m-l-xs">
+						<label class="i-check"><input type="checkbox"><i></i>Remember me</label>
+					</div>
+					<div class="form-group m-l-xs">
+						<button type="submit" class="btn btn-default">Sign in</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel m-b-md">
+			<div class="panel-heading">
+				<h5>表单<small>所有元素</small></h5>
+			</div>
+			<div class="panel-body">
+				<form method="post" autocomplete="off">
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Email</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="email" class="form-control" placeholder="Email">
+							<span class="help m-t-xs">Example block-level help text here.</span>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 lh-sm p-r-sm">Input Size</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="email" class="form-control input-sm" placeholder=".input-sm">
+							<input type="email" class="form-control m-t-sm" placeholder="Default input">
+							<input type="email" class="form-control input-lg m-t-sm" placeholder=".input-lg">
+							<input type="email" class="form-control m-t-sm" placeholder="Default input" disabled>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Select</label>
+						<div class="col xs-10 p-l-sm">
+							<select name="account" class="form-control">
+								<option value="1">option 1</option>
+								<option value="2">option 2</option>
+								<option value="3">option 3</option>
+							</select>
+							<div class="col xs-5 m-t-sm">
+								<select multiple name="account" class="form-control">
+									<option value="1">option 1</option>
+									<option value="2">option 2</option>
+									<option value="3">option 3</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Textarea</label>
+						<div class="col xs-10 p-l-sm">
+							<textarea name="content" class="form-control" placeholder="Content"></textarea>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Button addons</label>
+						<div class="col xs-10 p-l-sm">
+							<div class="input-group">
+								<span class="input-group-addon"><input type="checkbox"></span>
+								<input type="text" class="form-control">
+								<span class="input-group-addon">元</span>
+							</div>
+							<div class="input-group m-t-sm">
+								<input type="text" class="form-control">
+								<span class="input-group-btn"><button class="btn btn-default">Go!</button></span>
+							</div>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Checkbox</label>
+						<div class="col xs-10 p-t-xs p-l-sm">
+							<label class="i-check i-check-xs m-r-sm"><input type="checkbox"><i></i>a</label>
+							<label class="i-check i-check-sm m-r-sm"><input type="checkbox"><i></i>b</label>
+							<label class="i-check m-r-sm"><input type="checkbox"><i></i>c</label>
+							<label class="i-check i-check-lg"><input type="checkbox"><i></i>d</label>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Radio</label>
+						<div class="col xs-10 p-t-xs p-l-sm">
+							<label class="i-check i-check-xs m-r-sm"><input type="radio" name="sex" checked><i></i>男</label>
+							<label class="i-check i-check-sm m-r-sm"><input type="radio" name="sex" checked><i></i>女</label>
+							<label class="i-check m-r-sm"><input type="radio" name="sex"><i></i>机器人</label>
+							<label class="i-check i-check-lg"><input type="radio" name="sex"><i></i>未知</label>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Switch</label>
+						<div class="col xs-10 p-t-xs p-l-sm">
+							<label class="i-switch i-switch-sm m-r-sm"><input type="checkbox" checked=""><i></i></label>
+							<label class="i-switch i-switch-sm bg-info m-r-sm"><input type="checkbox" checked=""><i></i></label>
+							<label class="i-switch bg-primary m-r-sm"><input type="checkbox" checked=""><i></i></label>
+							<label class="i-switch i-switch-lg bg-danger"><input type="checkbox" checked=""><i></i></label>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<label class="col xs-2 p-r-sm">Radio Switch</label>
+						<div class="col xs-10 p-t-xs p-l-sm">
+							<label class="i-switch bg-primary m-r-sm"><input type="radio" name="switch" checked=""><i></i></label>
+							<label class="i-switch bg-warning"><input type="radio" name="switch"><i></i></label>
+						</div>
+					</div>
+					<div class="line line-dashed"></div>
+					<div class="form-group row">
+						<div class="col xs-10 offset-2 p-l-sm">
+							<button type="submit" class="btn btn-sm btn-info">Sign in</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row m-b-md">
+			<div class="col xs-6">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5>表格<small>基本</small></h5>
+					</div>
+					<div class="panel-toolbar">
+						<form class="form-inline" method="post" autocomplete="off">
+							<div class="form-group">
+								<input type="text" class="form-control input-sm" placeholder="开始时间">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control input-sm" placeholder="结束时间">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-default"><i class="fa fa-fw fa-filter"></i>筛选</button>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>年龄</th>
+									<th>统计</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>男</td>
+									<td>23</td>
+									<td><span class="line">5,3,9,6,5,9,7,3,5,2</span></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>李四</td>
+									<td>男</td>
+									<td>27</td>
+									<td><span class="line">5,3,2,-1,-3,-2,2,3,5,2</span></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>王麻子</td>
+									<td>男</td>
+									<td>65</td>
+									<td><span class="line">0,-3,-6,-4,-5,-4,-7,-3,-5,-2</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-6">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5>表格<small>斑马纹效果</small></h5>
+					</div>
+					<div class="panel-toolbar">
+						<div class="btn-group">
+							<button type="button" class="btn btn-sm btn-default active">本周</button>
+							<button type="button" class="btn btn-sm btn-default">本月</button>
+							<button type="button" class="btn btn-sm btn-default">本年</button>
+						</div>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>年龄</th>
+									<th>统计</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>男</td>
+									<td>23</td>
+									<td><span class="bar">5,3,9,6,5,9,7,3,5,2</span></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>李四</td>
+									<td>男</td>
+									<td>27</td>
+									<td><span class="bar">5,3,2,-1,-3,-2,2,3,5,2</span></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>王麻子</td>
+									<td>男</td>
+									<td>65</td>
+									<td><span class="bar">0,-3,-6,-4,-5,-4,-7,-3,-5,-2</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row m-b-md">
+			<div class="col xs-6">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5>表格<small>边框</small></h5>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>年龄</th>
+									<th>统计</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>男</td>
+									<td>23</td>
+									<td><span class="pie">226,134</span></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>李四</td>
+									<td>男</td>
+									<td>27</td>
+									<td><span class="pie">0.52,1.041</span></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>王麻子</td>
+									<td>男</td>
+									<td>65</td>
+									<td><span class="pie">1,2,3,2,2</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-6">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5>表格<small>鼠标经过</small></h5>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>年龄</th>
+									<th>统计</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>张三</td>
+									<td>男</td>
+									<td>23</td>
+									<td><span class="donut">226,134</span></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>李四</td>
+									<td>男</td>
+									<td>27</td>
+									<td><span class="donut">0.52,1.041</span></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>王麻子</td>
+									<td>男</td>
+									<td>65</td>
+									<td><span class="donut">1,2,3,2,2</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col xs-6">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5>按钮<small>样式</small></h5>
+					</div>
+					<div class="panel-body">
+						<button class="btn btn-default w-xs">Default</button>
+						<button class="btn btn-primary w-xs">Primary</button>
+						<button class="btn btn-success w-xs">Success</button>
+						<button class="btn btn-info w-xs">Info</button>
+						<button class="btn btn-warning w-xs">Warning</button>
+						<br>
+						<button class="btn btn-danger w-xs m-t-xs">Danger</button>
+						<button class="btn btn-dark w-xs m-t-xs">Dark</button>
+						<button class="btn btn-default disabled w-xs m-t-xs">Disabled</button>
+						<div class="line line-dashed"></div>
+						<button class="btn btn-default rounded w-xs">Default</button>
+						<button class="btn btn-primary rounded w-xs">Primary</button>
+						<button class="btn btn-success rounded w-xs">Success</button>
+						<button class="btn btn-info rounded w-xs">Info</button>
+						<button class="btn btn-warning rounded w-xs">Warning</button>
+						<br>
+						<button class="btn btn-danger rounded w-xs m-t-xs">Danger</button>
+						<button class="btn btn-dark rounded w-xs m-t-xs">Dark</button>
+						<button class="btn btn-default rounded disabled w-xs m-t-xs">Disabled</button>
+						<div class="line line-dashed"></div>
+						<button class="btn btn-sm btn-primary btn-addon"><i class="fa fa-plus"></i>Primary</button>
+						<button class="btn btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>Info</button>
+						<button class="btn btn-sm btn-success btn-addon"><i class="fa fa-minus pull-right"></i>Success</button>
+						<button class="btn btn-sm btn-warning btn-addon"><i class="fa fa-circle"></i>Warning</button>
+						<br>
+						<button class="btn btn-sm btn-default btn-addon m-t-xs"><i class="fa fa-plus"></i>Default</button>
+						<div class="line line-dashed"></div>
+						<button class="btn btn-xs btn-success btn-addon"><i class="fa fa-music"></i>Success</button>
+						<button class="btn btn-xs btn-info btn-addon"><i class="fa fa-play pull-right"></i>Info</button>
+						<div class="line line-dashed"></div>
+						<button class="btn btn-success btn-addon"><i class="fa fa-music"></i>Success</button>
+						<button class="btn btn-info btn-addon"><i class="fa fa-play pull-right"></i>Info</button>
+						<div class="line line-dashed"></div>
+						<button class="btn btn-lg btn-success btn-addon"><i class="fa fa-music"></i>Success</button>
+						<button class="btn btn-lg btn-info btn-addon"><i class="fa fa-play pull-right"></i>Info</button>
+						<div class="line line-dashed"></div>
+						<div class="btn-group">
+							<button type="button" class="btn btn-default">Left</button>
+							<button type="button" class="btn btn-default">Middle</button>
+							<button type="button" class="btn btn-default">Right</button>
+						</div>
+						<div class="line line-dashed"></div>
+						<div class="btn-group-vertical">
+							<button type="button" class="btn btn-default">Top</button>
+							<button type="button" class="btn btn-default">Middle</button>
+							<button type="button" class="btn btn-default">Bottom</button>
+						</div>
+						<div class="line line-dashed"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-6">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5>其它<small>样式</small></h5>
+					</div>
+					<div class="panel-body">
+						<div class="progress progress-lg rounded">
+							<div class="progress-bar bg-danger rounded" style="width:80%"></div>
+						</div>
+						<div class="progress m-t-xs">
+							<div class="progress-bar bg-success" style="width:60%"></div>
+						</div>
+						<div class="progress progress-sm m-t-xs">
+							<div class="progress-bar bg-info" style="width:40%"></div>
+						</div>
+						<div class="line line-dashed"></div>
+						<b class="badge bg-primary">1</b>
+						<b class="badge bg-success">2</b>
+						<b class="badge bg-info">3</b>
+						<b class="badge bg-warning">4</b>
+						<b class="badge bg-danger">5</b>
+						<b class="badge bg-dark">6</b>
+						<b class="badge bg-black">7</b>
+						<b class="badge bg-light">8</b>
+						<div class="line line-dashed"></div>
+						<div class="pagination"><a class="prev" href="">«</a><span class="current">1</span><a class="num" href="">2</a><a class="num" href="">3</a><a class="num" href="">4</a><a class="num" href="">5</a><a class="num" href="">6</a><a class="next" href="">»</a></div>
+						<div class="pagination pagination-sm m-t-xs"><a class="prev" href="">«</a><span class="current">1</span><a class="num" href="">2</a><a class="num" href="">3</a><a class="num" href="">4</a><a class="num" href="">5</a><a class="num" href="">6</a><a class="next" href="">»</a></div>
+						<div class="pagination pagination-lg m-t-xs"><a class="prev" href="">«</a><span class="current">1</span><a class="num" href="">2</a><a class="num" href="">3</a><a class="num" href="">4</a><a class="num" href="">5</a><a class="num" href="">6</a><a class="next" href="">»</a></div>
+						<div class="line line-dashed"></div>
+					</div>
+				</div>
+				<div class="panel m-l-sm m-t-md">
+					<div class="panel-heading">
+						<h5>排版<small>typo</small></h5>
+					</div>
+					<div class="panel-body typo">
+						<ul>
+							<li>每个人都有一个<a href="">死角</a>， 自己走不出来，别人也闯不进去。</li>
+							<li>我把最深沉的秘密放在那里。</li>
+							<li>你不懂我，我不怪你。</li>
+							<li>每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</li>
+						</ul>
+						<div class="line line-dashed"></div>
+						<ol>
+							<li>每个人都有一个<a href="">死角</a>， 自己走不出来，别人也闯不进去。</li>
+							<li>我把最深沉的秘密放在那里。</li>
+							<li>你不懂我，我不怪你。</li>
+							<li>每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</li>
+						</ol>
+						<div class="line line-dashed"></div>
+						<blockquote>每个人都有一个死角， 自己走不出来，别人也闯不进去。我把最深沉的秘密放在那里。你不懂我，我不怪你。每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</blockquote>
+						<div class="line line-dashed"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/jquery.peity.min.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('span.line').peity('line', {fill:'#1ab394', stroke:'#169c81'});
+		$('span.bar').peity('bar', {fill:['#1ab394', '#d7d7d7'], width:50});
+		$('span.pie').peity('pie', {fill:['#1ab394', '#d7d7d7', '#ffffff']});
+		$('span.donut').peity('donut');
+	});
+</script>
+</html>

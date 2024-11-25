@@ -1,0 +1,21 @@
+<include file="Public/header" title="订单详情" />
+
+<body id="pay">
+	<include file="Public/nav" title="订单详情" />
+	<include file="Public/bar" on="home" />
+	<div class="container">
+		<div class="trade">订单号：{$order.trade_no}</div>
+		<div class="info">
+			<div class="hd">投资金额<span>(每日分红{$product.profit|trim_price}元，共{$product.num}天)</span></div>
+			<div class="bd">
+				<div class="price"><sup>&yen;</sup><span>{$product.price|trim_price}</span></div>
+				<p>预计可获利：<span>{$product.total_profit|trim_price}</span>元</p>
+			</div>
+		</div>
+	</div>
+	<div class="alipay"><img width="80%" src="{:cdn()}/themes/duoduo2/assets/img/alipay.png"></div>
+	<div class="row btn"><a class="button" href="#">立即支付</a></div>
+	<div class="pay-form"></div>
+</body>
+
+<include file="Public/footer" />

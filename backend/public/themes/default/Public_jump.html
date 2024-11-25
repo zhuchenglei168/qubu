@@ -1,0 +1,31 @@
+<include file="Public/header" title="提示信息" />
+
+<body id="msg">
+
+
+	<div class="container">
+		<if condition="isset($success)">
+			<p class="success"><i class="icon iconfont icon-success"></i>{$success}</p>
+		<else />
+			<p class="error"><i class="icon iconfont icon-error"></i>{$error}</p>
+		</if>
+		<if condition="isset($url)"><p class="jump">页面自动 <a id="href" href="{$url}">跳转</a> 等待时间：<b id="wait">{$wait}</b></p></if>
+	</div>
+</body>
+<if condition="isset($url)">
+<script>
+	(function(){
+		var wait = document.getElementById('wait');
+		var href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+	})();
+</script>
+</if>
+
+

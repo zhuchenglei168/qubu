@@ -1,0 +1,19 @@
+<header class="row {$nav.class}">
+	<div class="col home">
+		<empty name="nav.href">
+			<a href="/"><i class="iconfont icon-home"></i></a>
+		<else />
+			<a href="{$nav.href}"><i class="iconfont icon-{$nav.icon|default='prev'}"></i></a>
+		</empty>
+	</div>
+	<div class="col title">[title]</div>
+	<div class="col menu"><i class="iconfont icon-menu"></i></div>
+</header>
+<div class="row nav">
+	<div class="col"><a href="/user"><img src="{:cdn()}/themes/duoduo/assets/img/icon-user.png"><p>账户中心</p></a></div>
+	<div class="col"><a href="/user/cash"><img src="{:cdn()}/themes/duoduo/assets/img/icon-cash.png"><p>提现</p></a></div>
+	<div class="col"><a href="/user/share"><img src="{:cdn()}/themes/duoduo/assets/img/icon-share.png"><p>我的二维码</p></a></div>
+	<div class="col"><a href="/user/order"><img src="{:cdn()}/themes/duoduo/assets/img/icon-order.png"><p>我的订单</p></a></div>
+	<div class="col"><a href="/user/distrib"><img src="{:cdn()}/themes/duoduo/assets/img/icon-distrib.png"><p>我的佣金</p></a></div>
+	<div class="col"><a href="/user/bonus"><img src="{:cdn()}/themes/duoduo/assets/img/icon-bonus.png"><p>全球分红</p></a></div>
+</div>

@@ -1,0 +1,103 @@
+<include file="Public/header" title="{$conf['site']['title']}" />
+
+<body id="home">
+	<include file="Public/nav" title="{$conf['site']['title']}" />
+	<include file="Public/bar" on="home" />
+	<div id="slide">
+		<div class="hd">
+			<ul></ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<foreach name="slide" item="vo">
+					<li><a href="{$vo.url}"><img src="{$vo.cover}"></a></li>
+				</foreach>
+			</ul>
+		</div>
+	</div>
+	<div class="list">
+		<if condition="I('get.sec', 'intval') eq 0">
+			<foreach name="product" item="vo">
+				<div class="box <empty name="vo.remain">off</empty>">
+					<div class="hd clear">
+						<h3>{$vo.title}</h3>
+						<if condition="$vo['day_limit']"><span>每人每日限购{$vo.day_limit}份</span></if>
+					</div>
+					<div class="row bd">
+						<table>
+							<tr>
+								<td class="money"><span>&yen;</span>{$vo.price|trim_price}</td>
+								<td class="times">{$vo.num}<span>次</span></td>
+								<td class="profit">{$vo.profit|trim_price}<span>元</span></td>
+								<td class="btn" rowspan="2">
+									<empty name="vo.remain">
+										<a href="javascript:;">已售罄</a>
+										<p></p>
+									<else />
+										<empty name="vo.status">
+											<a href="javascript:;">暂未开放</a>
+											<p></p>
+										<else />
+											<a class="button" href="/buy/{$vo.id}">立即购买</a>
+											<p>还剩<em>{$vo.remain}</em>份</p>
+										</empty>
+									</empty>
+								</td>
+							</tr>
+							<tr>
+								<th>投资金额</th>
+								<th>周期</th>
+								<th>每<empty name="vo.type">天<else />{$vo.type}小时</empty>分润</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</foreach>
+		<else />
+			<foreach name="product_hour" item="vo">
+				<div class="box">
+					<div class="hd clear">
+						<h3>{$vo.title}</h3>
+						<if condition="$vo['day_limit']"><span>每人每日限购{$vo.day_limit}份</span></if>
+					</div>
+					<div class="row bd">
+						<table>
+							<tr>
+								<td class="money"><span>&yen;</span>{$vo.price|trim_price}</td>
+								<td class="times">{$vo.num}<span>次</span></td>
+								<td class="profit">{$vo.profit|trim_price}<span>元</span></td>
+								<td class="btn" rowspan="2"><a class="button" href="/buy/{$vo.id}">立即加入</a></td>
+							</tr>
+							<tr>
+								<th>投资金额</th>
+								<th>周期</th>
+								<th>每{$vo.type}小时分润</th>
+							</tr>
+						</table>
+					</div>
+					<?php
+						$progress = 0;
+						$total = $saled[$vo['id']] + $vo['stock'];
+						$progress = $total ? round($saled[$vo['id']] / $total * 100, 2) : 100;
+						if ($progress < 1) $progress = 1;
+					?>
+					<div class="progress"><div class="progress-bar" style="width:{$progress}%"></div></div>
+				</div>
+			</foreach>
+		</if>
+	</div>
+	<footer>Copyright &copy;2017-2018 {$conf['site']['title']}</footer>
+</body>
+<script src="{:cdn()}/static/libs/touchslide.min.js"></script>
+<script>
+	TouchSlide({slideCell:'#slide', titCell:'.hd ul', mainCell:'.bd ul', effect:'left', autoPlay:true, autoPage:true, switchLoad:'_src'});
+	<if condition="$conf['more']['msg_status'] eq 1">
+		layer.open({
+			title: ['系统公告', 'background-color:#e71d36;color:#fff'],
+			content: '{$conf['more']['msg']}',
+			btn: '我知道了'
+		});
+	</if>
+</script>
+
+<include file="Public/footer" />

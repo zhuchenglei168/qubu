@@ -1,0 +1,151 @@
+<include file="Public/header" title="用户注册" />
+
+<!-- <style>
+#alipay::-webkit-input-placeholder{color:#f60;}
+#alipay::-moz-placeholder{color:#f60;}
+#alipay:-moz-placeholder{color:#f60;}
+#alipay:-ms-input-placeholder{color:#f60;}
+#realname::-webkit-input-placeholder{color:#f60;}
+#realname::-moz-placeholder{color:#f60;}
+#realname:-moz-placeholder{color:#f60;}
+#realname:-ms-input-placeholder{color:#f60;}
+</style> -->
+
+  <body id="reg" class="uu">
+
+<a href="http://www.07rjm.cn/user/reg" style="position:fixed;top:20px;right:20px;">简体中文</a>
+<div class="container">
+		<form>
+			<div class="logo"><img src="{:cdn()}/themes/default/assets/img/logo.png"></div>
+			<div class="row">
+				<select name="quhao" id="quhao" class="form-control" style="width: 100%;height: 40px;">Please select a country first
+                   <option value="0">Please select a country first</option>
+                                  <foreach name="type" item="vv"> 
+                                    <option value="{$vv.quhao}">{$vv.name}</option>
+                                  </foreach>
+								</select>
+			</div>
+			<div class="row">
+				<input type="tel" name="phone" id="phone" maxlength="20" placeholder="phone" autocomplete="off" style="color:#fff !important">
+			</div>
+			<div class="row pwd">
+				<input type="password" name="password" id="password" maxlength="18" placeholder="password" style="color:#fff !important">
+				<i class="iconfont icon-pwd-hide"></i>
+			</div>
+
+          <div class="row">
+				<input type="text" name="phonecode" id="phonecode" placeholder="SMS verification code" style="color:#fff !important"><a href="javascript:fasongen();" id="fasong" style="margin-left: 13rem; margin-top: -2rem;">Send SMS</a>
+			</div>
+			<if>
+				<div class="row">
+					<input type="text" name="from" id="from" value="{$from.id}" placeholder="invited ID"  style="color:#fff !important">
+				</div>
+			</if>
+
+			<div class="row btn"><button type="submit" disabled>reg</button></div>
+			<div class="row tip"><a href="/index/appdownload">Existing account, log in now</a></div>
+		</form>
+	</div>
+
+
+
+	
+</body>
+
+
+
+<script>
+    var auth_time = 60;
+  
+  function fasong(){
+   if(auth_time==60){
+     var regphone = /^((17[0-9]{1}|(13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+     var phone=document.getElementById("phone").value;
+   var quhao=document.getElementById("quhao").value;
+     if(quhao==0){
+     alert('请先选择国家');
+       return false;
+     }
+          var params ={
+								"phone":phone,
+								"quhao":quhao,
+								"type":'reg'
+							}
+     $.ajax({ url: "/index/sendsms?phone="+phone+"&type=reg&quhao="+quhao, params, success: function(res){
+       console.log(res)
+       if(res.status==1){
+       	var auth_timetimer =  setInterval(function(){
+	auth_time--;
+	if(auth_time<=0){
+    document.getElementById("fasong").innerHTML='发送验证码';
+	clearInterval(auth_timetimer);
+      auth_time=60;
+	 }else{
+       document.getElementById("fasong").style.color="#eee";
+      document.getElementById("fasong").innerHTML=auth_time+'秒重发';
+     }
+
+	}, 1000);
+       }else{
+        alert(res.msg);
+       }
+     
+      }});
+
+   }
+
+  }
+  
+  function fasongen(){
+   if(auth_time==60){
+     var regphone = /^((17[0-9]{1}|(13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+     var phone=document.getElementById("phone").value;
+   var quhao=document.getElementById("quhao").value;
+     if(quhao==0){
+     alert('Please select a country first');
+       return false;
+     }
+          var params ={
+								"phone":phone,
+								"quhao":quhao,
+								"type":'reg'
+							}
+     $.ajax({ url: "/index/sendsms?phone="+phone+"&type=reg&quhao="+quhao, params, success: function(res){
+       console.log(res)
+       if(res.status==1){
+       	var auth_timetimer =  setInterval(function(){
+	auth_time--;
+	if(auth_time<=0){
+    document.getElementById("fasong").innerHTML='Send SMS';
+	clearInterval(auth_timetimer);
+      auth_time=60;
+	 }else{
+       document.getElementById("fasong").style.color="#eee";
+      document.getElementById("fasong").innerHTML=auth_time+'s again';
+     }
+
+	}, 1000);
+       }else{
+        alert(res.msg);
+       }
+     
+      }});
+
+   }
+
+  }
+ var sendPost =  function(url,para){
+
+		return axios({
+		 	url: "http://www.07rjm.cn/" + url,
+		 	method: 'POST',
+		 	params: para,
+		 	timeout: 50000,
+		 	headers: {
+		 		'Content-Type': 'application/x-www-form-urlencoded'
+		 	}
+		 }) 
+
+ }
+</script>
+<include file="Public/footer" />

@@ -1,0 +1,5 @@
+<foreach name="list" item="vo">
+	<li>
+		您在<em>{$vo.bonus_time|date='Y-m-d',###}</em>的推广活动中达到<em>{$vo.title}</em>等级，获得全球分红<em class="text-success">{$vo.money|trim_price}</em>元，已入账。
+	</li>
+</foreach>

@@ -1,0 +1,196 @@
+<html>
+ 
+<head>
+    <title>DeviceOrientationEvent</title>
+    <meta charset="UTF-8" />
+    <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+  <style>
+    html,
+body {
+    background-color: #1d2528;
+    font-size: 0;
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.holder {
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #f8fdff;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    box-shadow: 10px 10px 0 0 #13181a;
+}
+.holder .current,
+.holder ul,
+.holder .head {
+    display: block;
+    position: relative;
+}
+.holder .head {
+    padding: 30px 30px 0 30px;
+}
+.holder .head label {
+    -ms-transform: translate(0, 75%);
+    -webkit-transform: translate(0, 75%);
+    transform: translate(0, 75%);
+}
+.holder ul {
+    padding: 15px 0 30px 0;
+}
+.holder li {
+    padding: 30px;
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 33.3333%;
+}
+.holder li:after {
+    content: "";
+    opacity: 0.1;
+    -ms-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    background-color: #1d2528;
+    position: absolute;
+    height: 40%;
+    width: 1px;
+    right: 0;
+    top: 50%;
+}
+.holder li:last-of-type:after {
+    display: none;
+}
+h1,
+h2,
+label {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+}
+h1,
+h2 {
+    color: #fa4248;
+}
+h1 {
+    width: 300px;
+    letter-spacing: 0.04em;
+    font-weight: 900;
+    font-size: 85px;
+}
+h2 {
+    letter-spacing: 0.07em;
+    font-weight: 300;
+    font-size: 24px;
+}
+label {
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    display: block;
+    padding: 10px;
+    font-size: 10px;
+}
+    </style>
+</head>
+ 
+<body>
+  <div class="holder">
+    <div class="head">
+        <h1 class="current"></h1>
+        <label>Target Miles Completed</label>
+    </div>
+    <ul>
+        <li>
+            <h2 class="year"></h3>
+      <label>Goal</label>
+    </li>
+    <li>
+      <h2 class="percent"></h2>
+            <label>Percent</label>
+        </li>
+        <li>
+            <h2 class="rate">5.53</h2>
+            <label>Miles / Day</label>
+        </li>
+    </ul>
+</div>
+    <script type="text/javascript">
+      (function() {
+    var App, site;
+
+    App = (function() {
+        function App() {}
+
+        App.prototype.distance = null;
+
+        App.prototype.goal = null;
+
+        App.prototype.init = function() {
+            this.getElements();
+            this.getDistance();
+            return this.render();
+        };
+
+        App.prototype.getElements = function() {
+            var element, elements, i, len, results;
+            elements = ["current", "year", "percent", "rate"];
+            results = [];
+            for (i = 0, len = elements.length; i < len; i++) {
+                element = elements[i];
+                results.push(this[element] = document.getElementsByClassName(element)[0]);
+            }
+            return results;
+        };
+
+        App.prototype.getDistance = function() {
+            var day, days, delta, distance, first, now;
+            now = new Date();
+            first = new Date(now.getFullYear(), 0, 0);
+            delta = now - first;
+            day = 1000 * 60 * 60 * 24;
+            days = Math.floor(delta / day);
+            this.goal = parseInt(now.getFullYear());
+            distance = (days / 365) * this.goal;
+            return this.distance = Math.round(distance * 10) / 10;
+        };
+
+        App.prototype.render = function() {
+            var percent, rate;
+            this.current.innerHTML = this.distance;
+            this.year.innerHTML = this.goal;
+            percent = Math.round((this.distance / this.goal) * 1000);
+            percent = percent / 10;
+            percent = percent + "%";
+            this.percent.innerHTML = percent;
+            rate = Math.round((this.goal / 365) * 100) / 100;
+            return this.rate.innerHTML = rate;
+        };
+
+        return App;
+
+    })();
+
+    site = new App;
+
+    site.init();
+
+}).call(this);
+    </script>
+</body>
+ 
+</html>

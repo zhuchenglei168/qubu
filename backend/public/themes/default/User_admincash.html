@@ -1,0 +1,31 @@
+<include file="Public/header" title="管理员提现" />
+
+<body id="user-password">
+	<include file="Public/nav" title="管理员提现" href="/user" />
+	<include file="Public/bar" on="user" />
+	<div class="container">
+		<form>
+			<ul class="item-content">
+				<li>
+					<input type="text" name="alipay" placeholder="请输入支付宝账号" value="{$user.alipay}">
+				</li>
+				<li>
+					<input type="text" name="realname" placeholder="请输入真实姓名" value="{$user.realname}">
+				</li>
+			</ul>
+			<ul class="item-content" style="margin-top:0.5rem">
+				<li>
+					<input type="number" name="money" placeholder="请输入提现金额">
+				</li>
+			</ul>
+			<ul class="item-content" style="margin-top:0.5rem">
+				<li>
+					<input type="password" name="password" placeholder="请输入确认密码">
+				</li>
+			</ul>
+			<div class="row btn"><button type="submit" disabled>立即提现</button></div>
+		</form>
+	</div>
+</body>
+
+<include file="Public/footer" />

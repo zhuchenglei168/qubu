@@ -1,0 +1,57 @@
+<include file="Public/header" title="理财项目" />
+
+<link rel="stylesheet" href="{:cdn()}/static/libs/circliful/jquery.circliful.css">
+<script src="{:cdn()}/static/libs/circliful/jquery.circliful.min.js"></script>
+
+<body id="invest">
+	<include file="Public/bar" on="invest" />
+    <div class="tab">
+        <ul>
+            <li {:I('get.sec') ? '' : 'class="on"'}><a href="/invest">理财专区</a></li><li {:I('get.sec') ? 'class="on"' : ''}><a href="/invest?sec=1">快返专区</a></li>
+        </ul>
+    </div>
+    <div class="list">
+		<foreach name="product" item="vo">
+			<div class="item-box <empty name="vo.remain">off</empty>">
+				<div class="hd clear">
+					<h3>{$vo.title}</h3>
+					<if condition="$vo['day_limit']"><span>日限购 <em>{$vo.day_limit}</em> 份</span></if>
+				</div>
+				<div class="row bd">
+					<div class="money">
+						<span>{$vo.price|trim_price}<em>元</em></span>
+						<p>投资金额</p>
+					</div>
+					<div class="times">
+						<span>{$vo.num}<em>次</em></span>
+						<p>周期</p>
+					</div>
+					<div class="progress">
+						<empty name="vo.remain">
+							<a href="javascript:;" data-dimension="55" data-text="已抢光" data-width="3" data-fontsize="12" data-percent="0" data-fgcolor="#ababab" data-bgcolor="#ababab"></a>
+						<else />
+							<a class="button" href="/buy/{$vo.id}" data-dimension="55" data-text="去购买" data-width="3" data-fontsize="12" data-percent="{$vo.percent}" data-fgcolor="#ff8c19" data-bgcolor="#ffd8b2"></a>
+						</empty>
+					</div>
+				</div>
+				<div class="fd clear">
+					<empty name="vo.remain">
+						<span class="left"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAAHeTXxYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk1OEY5MzNDRjAzQjExRTc5NjkwOTg5N0RDMEEyQTlEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk1OEY5MzNERjAzQjExRTc5NjkwOTg5N0RDMEEyQTlEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTU4RjkzM0FGMDNCMTFFNzk2OTA5ODk3REMwQTJBOUQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTU4RjkzM0JGMDNCMTFFNzk2OTA5ODk3REMwQTJBOUQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5ZDjSnAAACi0lEQVR42mI8c+YMAxCoAXEAEHexAAl9IL4AxFpA/J8JSAQBsS0QXwcpBamoB8kwQAAjQAAxQs34CcTsTFCZVzC9ICALIkAcRqgsI0AAwfTADEEGjExQwxig1jJCMVgDyHp2qM7D6DoBAghmLAjsgfpACuZoLiD+iqQaZMJJJiRBkB2qULY5E5rZd2AMJgYcACQxC8ns/8gS6UDsgKT4GMg+gABCdi4HEH9D8ig6mAnEGcj2/wPi73g0MEBtBTnDHqRpHxbFT9C8jQwOgDRpYJGQgdK3cYWCFANp4AgTUgycRJPElkREQCkDIICQQw8GyoC4AIiFoakjC4hvIStgQWLPgIYQMnAG4ptQW0EJ5geyphOghIHHH4zQKOEGxSXIT/YENCCDL7DQO4AmoQONnydY4g/E18eWIq8gZb3HWOQnMOFw/x0kjTZo8lYsWDT9R9KMLa7e4rKJEYmNbtMckKYjWGz6j8RGl69jghYYDHiciQxmIecnESLi6CQsxcA0vYW6/xgODY5AbAHjAAQYtgQLA6CU0ozH+egAlLhrgfggrjyIDISgLvwPTV22JORNW6ie/1AzhHBZNBsaHJYMlANLqFmz0S0CeTsFj0ZQOtKD5hXkMg4kZoVHXwqsNgFZ1IglQaKDFdCsLgvNnKpQNkhsFQG9ILMbQYnhGZAhSSDsjxBh2GE88s9ZoMUhodSEnj1xZRpcQBgUdEeJSE2MaPmfAU2MUOo8BvJRIbSNQksfFYB8dBFacROrERQf1kSq/Q8tIS7CkjcoN/NgqQNx+fAIkWUWD6xaQc6w36BlExe0dfGfjIz6H6qXG2rWN2LKOhgAtS38gdgdiDWRUulbaFNzJxBvBOIb+AwBAP5BkU7rpleGAAAAAElFTkSuQmCC">分红金额：{$vo.profit|trim_price}元/<empty name="vo.type">天<else />{$vo.type}小时</empty></span>
+					<else />
+						<span class="left"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAAHeTXxYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkUzREFGQ0UzRUY1RjExRTc4NEM2RTgwMDhGNjM2MzE0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkUzREFGQ0U0RUY1RjExRTc4NEM2RTgwMDhGNjM2MzE0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTNEQUZDRTFFRjVGMTFFNzg0QzZFODAwOEY2MzYzMTQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTNEQUZDRTJFRjVGMTFFNzg0QzZFODAwOEY2MzYzMTQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6RRJzIAAACi0lEQVR42mL83yPFAARqQBwAxF0sQEIfiC8AsRYQ/2cCEkFAbAvE10FKQSrqQTIMEMAIEECMUDN+AjE7E1TmFUwvCMiCCBCHESrLCBBAMD0wQ5ABIxPUMAaotYxQDNYAsp4dqvMwuk6AAIIZCwJ7oD6QgjmaC4i/IqkGmXCSCUkQZIcqlG3OhGb2HRiDiQEHAEnMQjL7P7JEOhA7ICk+BrIPIICQncsBxN+QPIoOZgJxBrL9/4D4Ox4NDFBbQc6wB2nah0XxEzRvI4MDIE0aWCRkoPRtXKEgxUAaOMKEFAMn0SSxJRERUMoACCDk0IOBMiAuAGJhaOrIAuJbyApYkNgzoCGEDJyB+CbUVlCC+YGs6QQoYeDxByM0SrhBcQnykz0BDcjgCyz0DqBJ6EDj5wmW+APx9bGlyCtIWe8xFvkJTDjcfwdJow2avBULFk3/kTRji6u3uGxiRGKj2zQHpOkIFpv+I7HR5euYoAUGAx5nIoNZyPlJhIg4OglLMTBNb6HuP4ZDgyMQW8A4AAGGLcHCACilNONxPjoAJe5aID6IKw8iAyGoC/9DU5ctCXnTFqrnP9QMIVwWzYYGhyUD5cASatZsdItA3k7BoxGUjvSgeQW5jAOJWeHRlwKrTUAWNWJJkOhgBTSry0IzpyqUDRJbRUAvyOxGUGJ4BmRIEgj7I0QYdhiP/HMWaHFIKDWhZ09cmQYXEAYF3VEiUhMjWv5nQBMjlDqPgYIO1kYhFpDjIwOQjy5CK25iNYLiw5pItf+hJcRFWPIG5WYeLHUgrjg7QmSZxQOrVpAz7Ddo2cQFbV38JyOj/ofq5Yaa9Y2Ysg4GQG0LfyB2B2JNpFT6FtrU3AnEG4H4Bj5DAG2yivRU82mnAAAAAElFTkSuQmCC">分红金额：{$vo.profit|trim_price}元/<empty name="vo.type">天<else />{$vo.type}小时</empty></span>
+					</empty>
+					<span class="right">剩余 <em>{$vo.remain}</em> 份</span>
+				</div>
+			</div>
+		</foreach>
+	</div>
+	<footer>Copyright &copy;2017-2018 {$conf['site']['title']}</footer>
+</body>
+
+<script>
+    $(function(){
+        $('.progress a').circliful();
+    });
+</script>
+
+<include file="Public/footer" />

@@ -1,0 +1,11 @@
+<header class="row {$nav.class}">
+	<div class="col home">
+		<empty name="nav.href">
+			<a href="/"><i class="iconfont icon-home"></i></a>
+		<else />
+			<a href="{$nav.href}"><i class="iconfont icon-{$nav.icon|default='prev'}"></i></a>
+		</empty>
+	</div>
+	<div class="col title">[title]</div>
+	<div class="col menu"></div>
+</header>

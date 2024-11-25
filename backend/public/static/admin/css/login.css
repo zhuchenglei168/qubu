@@ -1,0 +1,30 @@
+@import url(core.min.css);
+
+body{background-color:#1c2b36; color:#7793a7;}
+.container{position:fixed; width:100%; height:100%;}
+
+#login{position:absolute; top:50%; left:50%; width:230px; margin:-150px 0 0 -115px;}
+#login h1{margin:15px 0; font-size:16px; text-align:center;}
+#login h1 i{margin-right:5px;}
+.form-group input{height:34px; line-height:1.5; padding:6px 12px; border:0; background-color:#fff; font-size:13px; color:#555;}
+.form-group input::-webkit-input-placeholder{color:#ccc;}
+.form-group input::-moz-placeholder{color:#ccc;}
+.input-group{display:table; width:100%; border-collapse:separate; margin-top:5px;}
+.input-group .vcode{display:table-cell; width:80px; background-color:#fff; vertical-align:middle;}
+.input-group .vcode img{width:100%; height:34px; border-left:1px solid #e7eaec; cursor:pointer;}
+.b-t{border-top:1px solid #e7eaec;}
+.m-t{margin-top:15px;}
+.form-group button{position:relative; width:100%; height:34px; line-height:34px; border:1px solid #20a03f; background-color:#23ad44; font-weight:bold; font-size:14px; letter-spacing:5px; color:#fff;}
+.form-group button:active{-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125); box-shadow:inset 0 3px 5px rgba(0,0,0,.125);}
+.form-group button i{position:absolute; left:5px; margin-right:10px; line-height:34px; font-size:20px; vertical-align:top; opacity:.5; filter:alpha(opacity=50);}
+
+.animated{-webkit-animation-duration:0.5s; animation-duration:0.5s; -webkit-animation-fill-mode:both; animation-fill-mode:both;}
+.fadeInUp{-webkit-animation-name:fadeInUp; animation-name:fadeInUp;}
+@-webkit-keyframes fadeInUp{
+	from{opacity:0; -webkit-transform:translate3d(0, 100%, 0); transform:translate3d(0, 100%, 0);}
+	to{opacity:1; -webkit-transform:none; transform:none;}
+}
+@keyframes fadeInUp{
+	from{opacity:0; -webkit-transform:translate3d(0, 100%, 0); transform:translate3d(0, 100%, 0);}
+	to{opacity:1; -webkit-transform:none; transform:none;}
+}

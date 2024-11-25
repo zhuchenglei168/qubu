@@ -1,0 +1,23 @@
+<foreach name="list" item="vo">
+	<li>
+		<div class="clear product">
+			<h3 class="left">{$vo.title}</h3>
+			<div class="right">收益周期 <span><if condition="empty($vo['cur_profit'])">{$vo.num}<else />{$vo.cur_profit.num}</if>/{$vo.num}</span></div>
+			<div class="right last"><empty name="vo.type">日<else />{$vo.type}小时</empty>分红 <span>{$vo.profit|trim_price}</span> 元</div>
+		</div>
+		<div class="clear">
+			<div class="left">投资日期：<span>{$vo.pay_time|date='Y/m/d H:i',###}</span></div>
+			<div class="right">
+				<if condition="empty($vo['cur_profit'])">
+					<span class="text-success">已完成</span>
+				<else />
+					<if condition="$vo['cur_profit']['freeze_time'] lt NOW_TIME">
+						<span class="text-danger">结算中</span>
+					<else />
+						<span class="countdown text-warning" data-endtime="{$vo.cur_profit.freeze_time}"></span>
+					</if>
+				</if>
+			</div>
+		</div>
+	</li>
+</foreach>

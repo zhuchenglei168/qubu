@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<link rel="stylesheet" href="/static/libs/editor/themes/default/default.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-8">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-list"></i>超级VIP</h5>
+					</div>
+					
+					<div class="panel-body line-dashed">
+						<form class="list">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th> #</th>
+
+										<th>名称</th>
+										<th>押金</th>
+										<th>时间</th>
+
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+										<tr>
+											<td> {$vo.id}</td>
+											<td>{$vo.name|get_substr=###,30}</td>
+											<td>{$vo.yajin}</td>
+											<td>{$vo.day} 天</td>
+
+											
+											<td>
+												<a class="edit btn btn-xs btn-success" href="{:U('slide/editcjvip', array('id'=>$vo['id']))}">编辑</a>
+											</td>
+										</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</form>
+						<div class="pagination m-t-md">{$page}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-4">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-plus"></i>添加超级VIP</h5>
+					</div>
+					<div class="panel-body">
+						<form class="add" method="post" autocomplete="off">
+						
+							<div class="form-group m-b">
+								<label>名称</label>
+								<input type="text" name="name" class="form-control" placeholder="必填">
+							</div>
+							<div class="form-group m-b">
+								<label>押金</label>
+								<input type="number" name="yajin" class="form-control" placeholder="必填">
+							</div>
+							<div class="form-group m-b">
+								<label>时间（天）</label>
+								<input type="number" name="day" class="form-control" placeholder="必填">
+							</div>
+							
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-info">提交</button>
+								<button type="reset" class="btn btn-sm btn-danger">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/editor/kindeditor-min.js"></script>
+<script src="/static/libs/editor/zh_CN.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.add').submit(function(e){
+			$.tip('{:U('slide/addcjvip')}', $(this).serialize());
+			e.preventDefault();
+		});
+		$('a.edit').click(function(e){
+			$.iframe($(this).attr('href'), ['450px', '370px']);
+			e.preventDefault();
+		});
+		$('.del').click(function(){
+			var ids = $('form.list').serialize();
+			if (ids) {
+				layer.confirm('确认要删除这些记录?', {title:'提示信息'}, function(index){
+					$.tip('{:U('slide/delcountry')}', ids);
+					layer.close(index);
+				});
+			} else {
+				layer.msg('至少选择一条记录', {anim: 6});
+			}
+		});
+		$('form.list table th label').click(function(){
+			if ($(this).find('input').is(':checked')) {
+				$(this).parents('table').find('td input').prop('checked', true);
+			} else {
+				$(this).parents('table').find('td input').prop('checked', false);
+			}
+		});
+	});
+
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+		});
+		K('#cover-btn').click(function(e){
+			editor.loadPlugin('image', function(){
+				editor.plugin.imageDialog({
+					imageUrl:K('#cover').val(),
+					clickFn:function(url){
+						K('#cover').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

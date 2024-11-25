@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<link rel="stylesheet" href="/static/libs/editor/themes/default/default.css">
+<body class="p-none bg-white">
+	<div class="container">
+		<div class="panel">
+			<div class="panel-heading">
+				<h5><i class="fa fa-fw fa-pencil-square-o"></i>编辑国家</h5>
+			</div>
+			<div class="panel-body">
+				<form class="edit" method="post" autocomplete="off">
+					<div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">国旗</label>
+						<div class="col xs-10 p-l-sm">
+							<div class="input-group">
+								<input type="text" name="cover" id="cover" class="form-control" placeholder="选填" value="{$data.cover}">
+								<span class="input-group-btn"><button id="cover-btn" class="btn btn-default"><i class="fa fa-fw fa-image"></i></button></span>
+							</div>
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">国家名称</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="text" name="name" class="form-control" placeholder="必填" value="{$data.name}">
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">区号</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="text" name="quhao" class="form-control" placeholder="必填" value="{$data.quhao}">
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">货币符号</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="text" name="fuhao" class="form-control" placeholder="必填" value="{$data.fuhao}">
+					
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">汇率</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="text" name="huilv" class="form-control" placeholder="必填" value="{$data.huilv}">
+					
+						</div>
+					</div>
+                  <div class="row form-group m-b">
+						<label class="col xs-2 p-r-sm">押金</label>
+						<div class="col xs-10 p-l-sm">
+							<input type="text" name="yajin" class="form-control" placeholder="必填" value="{$data.yajin}">
+					
+						</div>
+					</div>
+					<div class="row form-group m-b">
+						<label class="col xs-2 lh-none p-r-sm">状态</label>
+						<div class="col xs-10 p-l-sm">
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="1" {$data['status']==1 ? 'checked' : ''}><i></i>正常</label>
+							<label class="i-check i-check-xs w-xxs"><input type="radio" name="status" value="0" {$data['status']==0 ? 'checked' : ''}><i></i>冻结</label>
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col xs-10 offset-2 p-l-sm">
+							<button type="submit" class="btn btn-sm btn-info">提交</button>
+							<a class="cancel btn btn-sm btn-danger" href="">取消</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/editor/kindeditor-min.js"></script>
+<script src="/static/libs/editor/zh_CN.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.edit').submit(function(e){
+			$.tip(window.location.href, $(this).serialize(), 1);
+			e.preventDefault();
+		});
+	});
+
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+		});
+		K('#cover-btn').click(function(e){
+			editor.loadPlugin('image', function(){
+				editor.plugin.imageDialog({
+					imageUrl:K('#cover').val(),
+					clickFn:function(url){
+						K('#cover').val(url);
+						editor.hideDialog();
+					}
+				});
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

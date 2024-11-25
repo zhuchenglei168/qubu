@@ -1,0 +1,12 @@
+<foreach name="list" item="vo">
+	<li class="item-inner">
+		<div class="item-title">提现金额：&yen;{$vo.money|trim_price}</div>
+		<div class="item-after">
+			<span class="time">{$vo.create_time|date='Y/m/d H:i',###}</span>
+			<if condition="$vo['status'] eq 0">
+				<a href="#" class="cancel" data-id="{$vo.id}">取消</a>
+			<else />
+				{$vo.status|get_stead=###,array('','<span class="text-success">已到账</span>','<span class="text-warning">已取消</span>')}</div>
+			</if>
+	</li>
+</foreach>

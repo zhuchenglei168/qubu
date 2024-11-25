@@ -1,0 +1,42 @@
+<include file="Public/header" title="奖金池" />
+
+<link rel="stylesheet" href="{:cdn()}/static/libs/dropload/dropload.css">
+
+<body id="user-bonus">
+	<include file="Public/nav" title="奖金池" href="/user" />
+	<include file="Public/bar" on="user" />
+	<div class="container">
+		<table class="level">
+			<tr>
+				<th>名称</th>
+				<th>流水比例</th>
+				<th>推荐要求</th>
+				<th>奖金池</th>
+				<th>今日人数</th>
+				<th>人均</th>
+			</tr>
+			<foreach name="level" item="vo">
+				<php>$bonus = $level_bonus[$vo['id']]</php>
+				<tr>
+					<td>{$vo.title}</td>
+					<td>{$vo.rate|trim_price} %</td>
+					<td>{$vo.num} 人/日</td>
+					<td>{$bonus.money|trim_price}</td>
+					<td>{$bonus.today_num}</td>
+					<td>{$bonus.average|trim_price}</td>
+				</tr>
+			</foreach>
+		</table>
+		<div class="info">
+			<p>您今日已推荐：<span>{$num}</span>人</p>
+		</div>
+		<div class="info">
+			<p>距离下次分红：<span class="countdown" data-endtime="{$endtime}"></span></p>
+		</div>
+	</div>
+	<ul class="list"></ul>
+</body>
+<script src="{:cdn()}/static/libs/dropload/dropload.min.js"></script>
+<script>var page = 0;</script>
+
+<include file="Public/footer" />

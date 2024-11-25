@@ -1,0 +1,21 @@
+<include file="Public/header" title="用户登录" />
+
+<body id="login" class="hxd">
+	<div class="container">
+		<form>
+			<div class="row">
+				<label for="phone">手机号</label>
+				<input type="tel" name="phone" id="phone" maxlength="13" autocomplete="off">
+			</div>
+			<div class="row pwd">
+				<label for="password">登录密码</label>
+				<input type="password" name="password" id="password" maxlength="18">
+				<i class="iconfont icon-pwd-hide"></i>
+			</div>
+			<div class="row btn"><button type="submit" disabled>登录</button></div>
+			<div class="row tip">没有账号？<a href="/user/reg">立即注册</a></div>
+		</form>
+	</div>
+</body>
+
+<include file="Public/footer" />

@@ -1,0 +1,75 @@
+<include file="Public/header" title="{$conf['site']['title']}" />
+
+<body id="home">
+	<include file="Public/bar" on="home" />
+	<div id="slide">
+		<div class="hd">
+			<ul></ul>
+		</div>
+		<div class="bd">
+			<ul>
+				<foreach name="slide" item="vo">
+					<li><a href="{$vo.url}"><img src="{$vo.cover}"></a></li>
+				</foreach>
+			</ul>
+		</div>
+	</div>
+	<ul class="menu">
+		<li><a href="/help/safe"><img src="{:cdn()}/themes/default/assets/img/safe.png"><span>安全保障</span></a></li>
+		<li><a href="/help/start"><img src="{:cdn()}/themes/default/assets/img/start.png"><span>控盘规则</span></a></li>
+	</ul>
+	<div class="list">
+		<foreach name="product" item="vo">
+			<div class="item-box <empty name="vo.remain">off</empty>">
+				<div class="hd clear">
+					<h3>{$vo.title}</h3>
+					<if condition="$vo['day_limit']"><span>日限购 <em>{$vo.day_limit}</em> 份</span></if>
+				</div>
+				<div class="row bd">
+					<div class="money">
+						<span>{$vo.price|trim_price}<em>元</em></span>
+						<p>投资金额</p>
+					</div>
+					<div class="times">
+						<span>{$vo.num}<em>次</em></span>
+						<p>周期</p>
+					</div>
+					<div class="btn">
+						<empty name="vo.remain">
+							<a href="javascript:;">已售罄</a>
+						<else />
+							<empty name="vo.status">
+								<a href="javascript:;">暂未开放</a>
+							<else />
+								<a class="button" href="/buy/{$vo.id}">立即购买</a>
+							</empty>
+						</empty>
+					</div>
+				</div>
+				<div class="fd clear">
+					<div class="progress clear"><span style="width:{$vo.percent}%"></span></div>
+					<empty name="vo.remain">
+						<span class="left">分红金额 <em>{$vo.profit|trim_price}</em> 元/<empty name="vo.type">天<else />{$vo.type}小时</empty></span>
+					<else />
+						<span class="left">分红金额 <em>{$vo.profit|trim_price}</em> 元/<empty name="vo.type">天<else />{$vo.type}小时</empty></span>
+					</empty>
+					<!-- <span class="right">剩余 <em>{$vo.remain}</em> 份</span> -->
+				</div>
+			</div>
+		</foreach>
+	</div>
+	<footer>Copyright &copy;2017-2018 {$conf['site']['title']}</footer>
+</body>
+<script src="{:cdn()}/static/libs/touchslide.min.js"></script>
+<script>
+	TouchSlide({slideCell:'#slide', titCell:'.hd ul', mainCell:'.bd ul', effect:'left', autoPlay:true, autoPage:true, switchLoad:'_src'});
+	<if condition="$conf['more']['msg_status'] eq 1">
+		layer.open({
+			title: ['系统公告', 'background-color:#23b7e5;color:#fff'],
+			content: '{$conf['more']['msg']}',
+			btn: '我知道了'
+		});
+	</if>
+</script>
+
+<include file="Public/footer" />

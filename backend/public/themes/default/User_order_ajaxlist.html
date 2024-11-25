@@ -1,0 +1,18 @@
+<foreach name="list" item="vo">
+	<li>
+		<div class="product clear">
+			<h3>{$vo.title}</h3>
+			<span>{$vo.pay_time|date='Y-m-d H:i',###}</span>
+		</div>
+		<div class="info clear">
+			产品规则：<em>每<empty name="vo.type">日<else />{$vo.type}小时</empty></em>分红<em>{$vo.profit|trim_price}</em>元，<em>{$vo.num}</em>次返完。
+		</div>
+		<div class="tip">
+			<if condition="empty($vo['cur_profit'])">
+				<span class="text-success">已全部返完</span>
+			<else />
+				第<em>{$vo.cur_profit.num}</em>次分红将在<span class="countdown" data-endtime="{$vo.cur_profit.freeze_time}"></span>后结算
+			</if>
+		</div>
+	</li>
+</foreach>

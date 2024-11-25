@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-8">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-list"></i>级别列表</h5>
+					</div>
+				
+					<div class="panel-body line-dashed">
+						<form class="list">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th><label class="i-check i-check-xs"><input type="checkbox"><i></i></label> #</th>
+										<th>级别LV</th>
+										<th>贡献值</th>
+										<th>交易手续费%</th>
+										
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<foreach name="list" item="vo">
+										<tr>
+											<td><label class="i-check i-check-xs"><input type="checkbox" name="ids[]" value="{$vo.id}"><i></i></label> {$vo.id}</td>
+											<td>{$vo.title}</td>
+											<td>{$vo.num}</td>
+											<td>{$vo.rate|trim_price}</td>
+											
+											<td>
+												<a class="edit btn btn-xs btn-success" href="{:U('bonus/level_edit', array('id'=>$vo['id']))}">编辑</a>
+											</td>
+										</tr>
+									</foreach>
+								</tbody>
+							</table>
+						</form>
+						<div class="pagination m-t-md">{$page}</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		$('form.add').submit(function(e){
+			$.tip('{:U('bonus/level_add')}', $(this).serialize());
+			e.preventDefault();
+		});
+		$('a.edit').click(function(e){
+			$.iframe($(this).attr('href'), ['450px', '320px']);
+			e.preventDefault();
+		});
+		$('.del').click(function(){
+			var ids = $('form.list').serialize();
+			if (ids) {
+				layer.confirm('确认要删除这些记录?', {title:'提示信息'}, function(index){
+					$.tip('{:U('bonus/level_del')}', ids);
+					layer.close(index);
+				});
+			} else {
+				layer.msg('至少选择一条记录', {anim: 6});
+			}
+		});
+		$('form.list table th label').click(function(){
+			if ($(this).find('input').is(':checked')) {
+				$(this).parents('table').find('td input').prop('checked', true);
+			} else {
+				$(this).parents('table').find('td input').prop('checked', false);
+			}
+		});
+	});
+</script>
+</html>

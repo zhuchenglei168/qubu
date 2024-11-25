@@ -1,0 +1,12 @@
+<foreach name="list" item="vo">
+	<li>
+		<div class="clear order">
+			<div class="left"><h3><i class="iconfont icon-user"></i>{$vo.level}级用户 {$vo.order_user_id}</h3></div>
+			<div class="right">投资金额<span class="text-success">{$vo.order_money|trim_price}</span>元</div>
+		</div>
+		<div class="clear">
+			<div class="left"><i class="iconfont icon-time"></i>{$vo.create_time|date='Y/m/d H:i',###}</div>
+			<div class="right">获得佣金<span class="money text-danger">{$vo.money|trim_price}</span>元</div>
+		</div>
+	</li>
+</foreach>

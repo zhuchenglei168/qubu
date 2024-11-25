@@ -1,0 +1,6 @@
+<foreach name="list" item="vo">
+	<li>
+		<div class="invest">{$vo.level}级用户<em>(ID:{$vo.order_user_id})</em>在<em>{$vo.create_time|date='Y-m-d H:i',###}</em>投资<em>{$vo.order_money|trim_price}</em>元。</div>
+		<div class="money">本次产生收益<em class="text-success">{$vo.money|trim_price}</em>元，已入账。</div>
+	</li>
+</foreach>

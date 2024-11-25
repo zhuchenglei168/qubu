@@ -1,0 +1,1 @@
+{"pay":{"app_id":"","alipay_public_key":"","merchant_private_key":""}}

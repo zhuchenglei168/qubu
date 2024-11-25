@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Address management </title>
+<link href="{G_TEMPLATES_CSS}/mobile/comm.css?v=130715" rel="stylesheet" type="text/css" />
+<link href="{G_TEMPLATES_CSS}/mobile/member.css?v=130726" rel="stylesheet" type="text/css" />
+<script src="{G_TEMPLATES_JS}/mobile/jquery190.js" language="javascript" type="text/javascript"></script>
+<script src="{G_TEMPLATES_JS}/jquery.Validform.min.js" language="javascript" type="text/javascript"></script>
+<script id="pageJS" data="{G_TEMPLATES_JS}/mobile/OrderList.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+    <header class="g-header">
+        <div class="head-l">
+	        <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn"><s></s><b>Back</b></a>
+        </div>
+        <h2>Address management</h2>
+        <div class="head-r">
+	        <a href="{WEB_PATH}/mobile/home" class="z-Member"></a>
+        </div>
+    </header>
+
+    <input name="hidTotalCount" type="hidden" id="hidTotalCount" />
+    <input name="hidPageMax" type="hidden" id="hidPageMax" />
+    <section class="clearfix g-member g-goods">
+        <article class="mt10 m-round">
+            <script type="text/javascript" src="{G_TEMPLATES_JS}/mobile/area.js"></script>
+            <script type="text/javascript">
+         
+            $(function(){
+                $("#btnAddnewAddr").click(function(){
+                    $("#div_consignee").show();
+                    $("#btnAddnewAddr").hide();
+                });
+                $("#btn_consignee_cancle").click(function(){
+                    $("#div_consignee").hide();
+                    $("#btnAddnewAddr").show();
+                });
+            });
+            $(function(){
+                $(".xiugai").click(function(){
+                    $("#btnAddnewAddr").hide();
+                    $("#div_consignee").hide();
+                });
+                $("#btn_consignee_cancle2").click(function(){
+                    $("#div_consignee2").hide();
+                    $("#btnAddnewAddr").show();
+                });
+            });
+            function update(id){    
+                $("#div_consignee2").show();
+               
+                $("#registerform3").attr("action","{WEB_PATH}/mobile/home/updateddress/"+id);
+                var str=$("#dizh_"+id).html();
+
+                $("#dizh2").val(str);
+               
+               
+                $("#mob2").val($("#item_"+id).attr("mob"));
+                $("#yb2").val($("#item_"+id).attr("yb"));
+                $("#shr2").val($("#item_"+id).attr("shr"));
+                $("#div_consignee2").show(); 
+            };
+            function dell(id){
+                if (confirm("Are you sure you want to delete this message?")){
+                    window.location.href="{WEB_PATH}/mobile/home/deladdress/"+id;
+                }
+            }
+
+            function setdf(id){
+                if (confirm("Are you sure to set it as the default address?")){
+                    window.location.href="{WEB_PATH}/mobile/home/setaddress/"+id;
+                }
+            }
+
+            </script>
+            <div class="R-content">
+                                                <div id="addressListDiv" class="list-tab detailAddress gray01" style="">
+                    <ul class="m-useraddresslst ">
+                        <li class="pad"><span>Detailed address</span><span>consignee</span><span>Default or not</span><span>operation</span></li>
+                                 {wc:loop $dizhi $dz}
+                               <li class="pad" id="item_{wc:$dz['id']}" shr="{wc:$dz['shouhuoren']}" yb="{wc:$dz['youbian']}" mob="{wc:$dz['mobile']}">
+                                 <span  id="dizh_{wc:$dz['id']}">{wc:$dz['jiedao']}</span>
+                                 <span>{wc:$dz['shouhuoren']}</span>
+                                 <span>  {wc:if $dz['default'] == 'Y'} Default address {wc:else}<a class="xiugai" href="javascript:;"   onclick="setdf({wc:$dz['id']})" title="Set as default">Set as default</a> {wc:if:end} </span>
+                                 <span>
+                                    <a class="xiugai" href="javascript:;"   onclick="update({wc:$dz['id']})" title="Edit">Edit</a>
+                                    <a class="xiugai" href="javascript:;"   onclick="dell({wc:$dz['id']})" title="Delete">Delete</a>
+                                 </span>
+                             </li>
+                                  {wc:loop:end}             
+                    </ul>     
+                </div>
+                                
+            </div> 
+    </section>
+        <section class="clearfix g-member g-goods">
+        <div class="add mt10 "><a  id="btnAddnewAddr" href="javascript:;" type="button" class="orangebut orgBtn"  style="display: block;">Add receiving address</a></div>
+        <div id="div_consignee" class="addAddress" style="display:none;">
+         <article class="mt10 m-round">
+            
+                
+                 
+                    <dl>Add receiving address</dl>
+                    <form class="registerform" method="post" action="{WEB_PATH}/mobile/home/useraddress">
+                    <table border="0" cellpadding="0" cellspacing="0" width="99%">
+                    <tbody>
+                    
+                    <tr>
+                        <td><label>Detailed address：</label></td>
+                        <td>
+                            <input datatype="*1-100" class="input" nullmsg="Please fill in the detailed address!" errormsg="The range is between 100!" name="jiedao" type="text" class="street" maxlength="100" />
+                            <em id="ship_address_valid_msg" class="red">*</em>          
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label>Postal Code：</label></td>
+                        <td>
+                            <input  class="input"  datatype="p" ignore="ignore" errormsg="Postal code error!" name="youbian" type="text" maxlength="6" id="txt_ship_zip" class="inputTxt" value=""> 
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>consignee：</label></td>
+                        <td>
+                            <input  class="input"  datatype="*" nullmsg="Consignee cannot be empty" name="shouhuoren" type="text" maxlength="20" id="txt_ship_name" class="inputTxt" value="">
+                            <em class="red" id="ship_name_valid_msg">*</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone：</label></td>
+                        <td>
+                            <input  class="input"  datatype="m" nullmsg="Mobile number cannot be empty" errormsg="Wrong cell phone number" name="mobile" type="text"  class="inputTxt" maxlength="11">
+                            <em id="ship_mb_valid_msg" class="red">*</em>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2">
+                            <input style="margin-right:1%" name="submit" type="submit" class="orangebut" id="btn_consignee_save" value="Save" title="Save"> 
+                            <input type="button" class="cancelBtn" value="Cancel" id="btn_consignee_cancle" title="Cancel">
+                        </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </form>
+                
+               
+            </article>
+            </div>
+    </section>
+         <section class="clearfix g-member g-goods">
+        <article class="mt10 m-round">
+            <div id="div_consignee2" class="addAddress" style="display:none;">
+                <dl>Modify receiving address</dl>
+                <script>var s3=["province3","city3","county3"];</script>    
+                 
+                <form id="registerform3" class="registerform" method="post" >
+                <table border="0" cellpadding="0" cellspacing="0" width="99%">
+                <tbody>
+               
+                <tr>
+                    <td><label>Detailed address：</label></td>
+                    <td>
+                        <input  class="input" id="dizh2" datatype="*1-100" nullmsg="Please fill in the detailed address!" errormsg="The range is between 100!" name="jiedao" type="text" class="street" maxlength="100" />
+                        <em id="ship_address_valid_msg" class="red">*</em>          
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td><label>Postal Code：</label></td>
+                    <td>
+                        <input id="yb2" class="input" datatype="p" ignore="ignore" errormsg="Postal code error!" name="youbian" type="text" maxlength="6" class="inputTxt" value=""> 
+                     
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Consignee：</label></td>
+                    <td>
+                        <input id="shr2" class="input" datatype="*" nullmsg="Consignee cannot be empty" name="shouhuoren" type="text" maxlength="20" class="inputTxt" value="">
+                        <em class="red" id="ship_name_valid_msg">*</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Phone：</label></td>
+                    <td>
+                        <input  id="mob2" class="input" datatype="m" nullmsg="Mobile number cannot be empty" errormsg="Wrong cell phone number" name="mobile" type="text" value="" class="inputTxt" maxlength="11">
+                        <em id="ship_mb_valid_msg" class="red">*</em>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2">
+                        <input style="margin-right:1%;" name="submit" type="submit" class="orangebut" id="btn_consignee_save" value="Save" title="Save"> 
+                        <input type="button" class="cancelBtn" value="Cancel" id="btn_consignee_cancle2" title="Cancel">
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+                </form>
+                 
+            </div>
+        </article>
+    </section>
+<div style="height:70px;"></div>      
+
+{wc:templates "mobile/index","footer"}
+<script language="javascript" type="text/javascript">
+  var Path = new Object();
+  Path.Skin="{G_TEMPLATES_STYLE}";
+  Path.Webpath = "{WEB_PATH}";
+  
+var Base={head:document.getElementsByTagName("head")[0]||document.documentElement,Myload:function(B,A){this.done=false;B.onload=B.onreadystatechange=function(){if(!this.done&&(!this.readyState||this.readyState==="loaded"||this.readyState==="complete")){this.done=true;A();B.onload=B.onreadystatechange=null;if(this.head&&B.parentNode){this.head.removeChild(B)}}}},getScript:function(A,C){var B=function(){};if(C!=undefined){B=C}var D=document.createElement("script");D.setAttribute("language","javascript");D.setAttribute("type","text/javascript");D.setAttribute("src",A);this.head.appendChild(D);this.Myload(D,B)},getStyle:function(A,B){var B=function(){};if(callBack!=undefined){B=callBack}var C=document.createElement("link");C.setAttribute("type","text/css");C.setAttribute("rel","stylesheet");C.setAttribute("href",A);this.head.appendChild(C);this.Myload(C,B)}}
+function GetVerNum(){var D=new Date();return D.getFullYear().toString().substring(2,4)+'.'+(D.getMonth()+1)+'.'+D.getDate()+'.'+D.getHours()+'.'+(D.getMinutes()<10?'0':D.getMinutes().toString().substring(0,1))}
+Base.getScript('{G_TEMPLATES_JS}/mobile/Bottom.js?v='+GetVerNum());
+</script>
+
+</div>
+</body>
+</html>

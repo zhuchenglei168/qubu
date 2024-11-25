@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-5">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-microchip"></i>系统信息</h5>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>参数</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>服务器域名</td>
+									<td><a href="http://{$data.server_name}" target="_blank">http://{$data.server_name}</a></td>
+								</tr>
+								<tr>
+									<td>服务器IP</td>
+									<td>{$data.server_addr}</td>
+								</tr>
+								<tr>
+									<td>操作系统</td>
+									<td>{$data.server_os}</td>
+								</tr>
+								<tr>
+									<td>运行环境</td>
+									<td>{$data.server_software}</td>
+								</tr>
+								<tr>
+									<td>PHP运行方式</td>
+									<td>{$data.php_sapi_name}</td>
+								</tr>
+								<tr>
+									<td>ThinkPHP版本</td>
+									<td>{$data.framework_version}</td>
+								</tr>
+								<tr>
+									<td>上传附件限制</td>
+									<td>{$data.upload_limit}</td>
+								</tr>
+								<tr>
+									<td>执行时间限制</td>
+									<td>{$data.execution_limit}</td>
+								</tr>
+								<tr>
+									<td>服务器时间</td>
+									<td>{$data.server_time}</td>
+								</tr>
+								<tr>
+									<td>北京时间</td>
+									<td>{$data.now_time}</td>
+								</tr>
+								<tr>
+									<td>剩余空间</td>
+									<td>{$data.disk_free_space}</td>
+								</tr>
+								<tr>
+									<td>register_globals</td>
+									<td>{$data.register_globals}</td>
+								</tr>
+								<tr>
+									<td>magic_quotes_gpc</td>
+									<td>{$data.magic_quotes_gpc}</td>
+								</tr>
+								<tr>
+									<td>magic_quotes_runtime</td>
+									<td>{$data.magic_quotes_runtime}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col xs-7">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-bar-chart"></i>统计信息</h5>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>新增人数</th>
+									<th>入账</th>
+									<th>提现</th>
+									<th>分润</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>今日</td>
+									<td>{$count.user.today|default=0}</td>
+									<td>{$count.income.today|default=0}</td>
+									<td>{$count.cash.today|default=0}</td>
+									<td>{$count.profit.today|default=0} (待返)</td>
+								</tr>
+								<tr>
+									<td>昨日</td>
+									<td>{$count.user.yestoday|default=0}</td>
+									<td>{$count.income.yestoday|default=0}</td>
+									<td>{$count.cash.yestoday|default=0}</td>
+									<td>{$count.profit.yestoday|default=0} (已返)</td>
+								</tr>
+								<tr>
+									<td>全部</td>
+									<td>{$count.user.all|default=0}</td>
+									<td>{$count.income.all|default=0}</td>
+									<td>{$count.cash.all|default=0}</td>
+									<td>{$count.profit.all|default=0} (已返)</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+          
+          <div class="col xs-7">
+				<div class="panel m-l-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-bar-chart"></i>统计</h5>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>数量</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>用户反馈</td>
+									<td><a href="{:U('user/fk')}">{$count.fk|default=0}</a></td>
+									
+								</tr>
+								<tr>
+									<td>糖果总数</td>
+									<td><a >{$count.tgzs|default=0}</a></td>
+									
+								</tr>
+								<tr>
+									<td>会员总数</td>
+									<td><a >{$count.hyzs|default=0}</a></td>
+									
+								</tr>
+								<tr>
+									<td>实名总数</td>
+									<td><a >{$count.smzs|default=0}</a></td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/admin/js/common.js"></script>
+</html>

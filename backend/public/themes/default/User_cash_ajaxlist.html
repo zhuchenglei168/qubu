@@ -1,0 +1,15 @@
+<foreach name="list" item="vo">
+	<li>
+		<switch name="vo.status">
+			<case value="0">
+				您在<em>{$vo.create_time|date='Y/m/d H:i',###}</em>提现<em class="text-success">{$vo.money|trim_price}</em>元未成功，请<a class="cancel" data-id="{$vo.id}" href="#">撤回</a>。
+			</case>
+			<case value="1">
+				您在<em>{$vo.create_time|date='Y/m/d H:i',###}</em>申请提现<em class="text-success">{$vo.money|trim_price}</em>元，已打款。
+			</case>
+			<case value="2">
+				您在<em>{$vo.create_time|date='Y/m/d H:i',###}</em>申请提现<em class="text-warning">{$vo.money|trim_price}</em>元，已取消。
+			</case>
+		</switch>
+	</li>
+</foreach>

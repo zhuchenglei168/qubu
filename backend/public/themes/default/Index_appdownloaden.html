@@ -1,0 +1,61 @@
+<include file="Public/header" title="用户验证" />
+
+<!-- <style>
+#alipay::-webkit-input-placeholder{color:#f60;}
+#alipay::-moz-placeholder{color:#f60;}
+#alipay:-moz-placeholder{color:#f60;}
+#alipay:-ms-input-placeholder{color:#f60;}
+#realname::-webkit-input-placeholder{color:#f60;}
+#realname::-moz-placeholder{color:#f60;}
+#realname:-moz-placeholder{color:#f60;}
+#realname:-ms-input-placeholder{color:#f60;}
+</style> -->
+<if condition="$isweixin eq 1"> 
+  <body style="background: #0a0b0f;">
+
+	<div class="container">
+		<img src="/fenxiang.jpg" style="width:100%">
+	</div>
+</body>
+
+<else /> 
+  <body id="reg" class="uu">
+
+	<div class="container">
+		<form>
+			<div class="logo"><img src="{:cdn()}/themes/default/assets/img/logo.png"></div>
+			<div class="row">
+				<input type="tel" name="phone" id="phone" maxlength="20" placeholder="phone" autocomplete="off" style="color:#fff !important">
+			</div>
+			<!--<div class="row pwd">
+				<input type="password" name="password" id="password" maxlength="18" placeholder="设置密码">
+				<i class="iconfont icon-pwd-hide"></i>
+			</div>-->
+
+
+			<div class="row btn"><button type="button" onclick="xiazai()">Download app</button></div>
+
+		</form>
+	</div>
+</body>
+  
+</if>
+
+
+<script>
+    var auth_time = 60;
+  
+  function xiazai(){
+   
+     var regphone = /^((17[0-9]{1}|(13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+     var phone=document.getElementById("phone").value;
+  if(phone==''){
+  	
+  	alert('Mobile number cannot be empty');
+  	return false;
+  }
+window.location.href="/index/appdown/id/"+phone;
+  }
+
+</script>
+<include file="Public/footer" />

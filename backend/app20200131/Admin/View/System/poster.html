@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/libs/font-awesome.min.css">
+<link rel="stylesheet" href="/static/libs/animate.min.css">
+<link rel="stylesheet" href="/static/admin/css/page.css">
+<link rel="stylesheet" href="/static/libs/colorpicker/style.css">
+<link rel="stylesheet" href="/static/libs/editor/themes/default/default.css">
+<style>
+#device{position:relative; width:395px; height:813px; margin:0 auto; background:url(/static/admin/img/device.png) no-repeat 0 0; background-size:300%;}
+#device .device-content{position:absolute; top:117px; left:37px; width:321px; height:569px; background-color:#000; overflow:hidden;}
+</style>
+<body>
+	<div class="container animated fadeInUp">
+		<div class="row">
+			<div class="col xs-12">
+				<div class="panel m-r-sm">
+					<div class="panel-heading">
+						<h5><i class="fa fa-fw fa-gear"></i>海报管理</h5>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col xs-6">
+								<div id="device">
+									<div class="device-content">
+										<iframe width="320" height="569" frameborder="0"></iframe>
+									</div>
+								</div>
+							</div>
+							<div class="col xs-5">
+								<form class="poster" method="post" autocomplete="off">
+									<div class="row form-group m-b m-t-xxl">
+										<label class="col xs-3 p-r-sm">背景图片</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="text" name="bg" id="bg" class="form-control"><span class="input-group-btn"><button id="bg-btn" class="btn btn-default"><i class="fa fa-fw fa-image"></i></button></span></div>
+											<span class="help m-t-xs">宽度320px，高度不限制</span>
+										</div>
+									</div>
+									<div class="line line-dashed"></div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">二维码 宽度</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="number" name="qrcode_width" id="qrcode_width" class="form-control"><span class="input-group-addon">px</span></div>
+										</div>
+									</div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">高度</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="number" name="qrcode_height" id="qrcode_height" class="form-control"><span class="input-group-addon">px</span></div>
+										</div>
+									</div>
+									<div class="line line-dashed"></div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">二维码 x轴</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="number" name="qrcode_x" id="qrcode_x" class="form-control"><span class="input-group-addon">px</span></div>
+										</div>
+									</div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">y轴</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="number" name="qrcode_y" id="qrcode_y" class="form-control"><span class="input-group-addon">px</span></div>
+										</div>
+									</div>
+									<div class="line line-dashed"></div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">二维码 边框</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="number" name="border_width" id="border_width" class="form-control"><span class="input-group-addon">px</span></div>
+										</div>
+									</div>
+									<div class="row form-group m-b">
+										<label class="col xs-3 p-r-sm">颜色</label>
+										<div class="col xs-9 p-l-sm">
+											<div class="input-group"><input type="text" name="border_color" id="border_color" class="form-control"><span class="input-group-addon"><i class="fa fa-fw fa-flask"></i></span></div>
+										</div>
+									</div>
+									<div class="row form-group">
+										<div class="col xs-9 offset-3 p-l-sm">
+											<button type="submit" class="btn btn-sm btn-info">提交</button>
+											<button type="reset" class="btn btn-sm btn-danger">重置</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/static/libs/jquery.min.js"></script>
+<script src="/static/libs/layer/layer.js"></script>
+<script src="/static/libs/colorpicker/colorpicker.js"></script>
+<script src="/static/libs/editor/kindeditor-min.js"></script>
+<script src="/static/libs/editor/zh_CN.js"></script>
+<script src="/static/admin/js/common.js"></script>
+<script>
+	$(function(){
+		// 海报初始化
+		var content = '{$data|htmlspecialchars_decode}';
+		if (content == '') {
+			content = '<style>*{margin:0;padding:0;}body{background:#eee;}.wrap{position:relative;width:320px;}.bg{width:100%}.qrcode{position:absolute;z-index:999;left:105px;top:300px;width:100px;height:100px;border:5px solid #fff;}</style><div class="wrap"><img class="bg" src="/static/admin/img/poster_bg.png" /><img class="qrcode" src="/static/admin/img/poster_qrcode.png" /></div>';
+		}
+		var html = $('#device iframe').contents();
+		html.find('body').html(content);
+
+		// 背景图片
+		$('#bg').val(html.find('.bg').attr('src'));
+		$('#bg').change(function(){
+			html.find('.bg').attr('src', $(this).val());
+		});
+		// 二维码宽度
+		$('#qrcode_width').val(parseInt(html.find('.qrcode').css('width')));
+		$('#qrcode_width').change(function(){
+			html.find('.qrcode').css('width', $(this).val());
+		});
+		// 二维码高度
+		$('#qrcode_height').val(parseInt(html.find('.qrcode').css('height')));
+		$('#qrcode_height').change(function(){
+			html.find('.qrcode').css('height', $(this).val());
+		});
+		// 二维码x轴
+		$('#qrcode_x').val(parseInt(html.find('.qrcode').css('left')));
+		$('#qrcode_x').change(function(){
+			html.find('.qrcode').css('left', $(this).val());
+		});
+		// 二维码y轴
+		$('#qrcode_y').val(parseInt(html.find('.qrcode').css('top')));
+		$('#qrcode_y').change(function(){
+			html.find('.qrcode').css('top', $(this).val());
+		});
+		// 二维码边框
+		$('#border_width').val(parseInt(html.find('.qrcode').css('borderWidth')));
+		$('#border_width').change(function(){
+			html.find('.qrcode').css('borderWidth', $(this).val());
+		});
+		// 二维码边框颜色
+		function hex(x){
+			return ('0'+parseInt(x).toString(16)).slice(-2);
+		}
+		var borderColor = html.find('.qrcode').css('borderColor');
+		borderColor = borderColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+		borderColor = '#'+hex(borderColor[1])+hex(borderColor[2])+hex(borderColor[3]);
+		$('#border_color').val(borderColor.toUpperCase());
+		$('#border_color').bigColorpicker(function(el, color){
+			$(el).val(color);
+			html.find('.qrcode').css('borderColor', color);
+		});
+
+		// 提交
+		$('form.poster').submit(function(e){
+			$.tip('{:U('system/poster')}', {html: html.find('body').html()}, 1);
+			e.preventDefault();
+		});
+
+		// 重置
+		$('form.poster button[type="reset"]').click(function(e){
+			window.location.reload();
+		});
+	});
+
+	KindEditor.ready(function(K){
+		var editor = K.editor({
+			uploadJson:'{:U('editor/upload')}',
+			fileManagerJson:'{:U('editor/fileManager')}',
+			allowFileManager:true,
+		});
+		K('#bg-btn').click(function(e){
+			editor.loadPlugin('image', function(){
+				editor.plugin.imageDialog({
+					imageUrl:K('#bg').val(),
+					clickFn:function(url){
+						K('#bg').val(url);
+						// 背景图片
+						$('#device iframe').contents().find('.bg').attr('src', url);
+						editor.hideDialog();
+					}
+				});
+			});
+			e.preventDefault();
+		});
+	});
+</script>
+</html>

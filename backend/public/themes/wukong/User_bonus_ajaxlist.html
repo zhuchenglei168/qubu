@@ -1,0 +1,8 @@
+<foreach name="list" item="vo">
+	<li>
+		<div class="clear">
+			<div class="left">分红金额：<span class="text-danger">&yen;{$vo.money|trim_price}</span></div>
+			<div class="right">{$vo.create_time|date='Y/m/d H:i',###}</div>
+		</div>
+	</li>
+</foreach>

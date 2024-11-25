@@ -1,0 +1,36 @@
+<include file="Public/header" title="邀请好友" />
+
+<body id="user-share">
+	<include file="Public/nav" class="light" title="长按下图保存" href="/user" />
+	<div class="container">
+		<div class="poster">{$conf.poster|htmlspecialchars_decode}</div>
+	</div>
+</body>
+<script src="{:cdn()}/static/libs/qrcode.min.js"></script>
+<script src="{:cdn()}/static/libs/html2canvas.min.js"></script>
+<script>
+	$(function(){
+		layer.open({type:2, content:'生成二维码'});
+		new QRCode($('.wrap')[0], {
+			text: '{$invite_url}',
+			width: parseInt($('.qrcode').css('width')),
+			height: parseInt($('.qrcode').css('height')),
+			correctLevel: QRCode.CorrectLevel.L
+		});
+		setTimeout(function(){
+			var qrcode = $('.poster img').last();
+			$('.poster .qrcode').attr('src', qrcode.attr('src'));
+			qrcode.remove();
+			html2canvas($('.poster'), {
+				width: 320,
+				onrendered: function(canvas){
+					$('.poster').html('<img width="100%" src="'+canvas.toDataURL('image/png')+'">');
+					$('.container').css('height', 'auto');
+					layer.closeAll();
+				}
+			});
+		}, 300);
+	});
+</script>
+
+<include file="Public/footer" />

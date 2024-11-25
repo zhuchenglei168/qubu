@@ -1,0 +1,26 @@
+<include file="Public/header" title="提示信息" />
+
+<body id="msg">
+	<include file="Public/nav" title="提示信息" />
+	<include file="Public/bar" />
+	<div class="container">
+		<img src="{:cdn()}/themes/wukong/assets/img/404.png">
+		<p class="error">抱歉，您访问的页面不存在！</p>
+		<p class="jump">页面自动 <a id="href" href="/">跳转</a> 等待时间：<b id="wait">3</b></p>
+	</div>
+</body>
+<script>
+	(function(){
+		var wait = document.getElementById('wait');
+		var href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+	})();
+</script>
+
+<include file="Public/footer" />

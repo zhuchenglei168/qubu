@@ -1,0 +1,68 @@
+@import url(core.min.css);
+
+#sitebar{position:absolute; left:0; top:0; width:210px; height:100%; background:#2f4050 url(../img/profile.png) no-repeat 0 0;}
+#sitebar .logo{display:none;}
+#sitebar .user{padding:30px 20px;}
+#sitebar .user .avatar img{width:48px; height:48px; -webkit-border-radius:50%; border-radius:50%;}
+#sitebar .user .info{position:relative;}
+#sitebar .user .info .username{padding-top:10px; font-weight:bold; font-size:13px; color:#dfe4ed;}
+#sitebar .user .info .role{padding-top:5px; font-size:12px; color:#8095a8; cursor:pointer;}
+#sitebar .user .info ul{display:none; position:absolute; z-index:100; left:0; width:120px; padding:5px 0; margin-top:5px; background-color:#fff; -webkit-box-shadow:0 0 3px rgba(86,96,117,.3); box-shadow:0 0 3px rgba(86,96,117,.3);}
+#sitebar .user .info ul li{padding:0 5px;}
+#sitebar .user .info ul li a{display:block; padding:0 10px; line-height:30px; font-size:12px; color:#58666e;}
+#sitebar .user .info ul li a:hover{background-color:#f5f5f5; color:#293846; -webkit-border-radius:2px; border-radius:2px;}
+#sitebar .user .info ul li.line{height:1px; margin:5px; background-color:#e5e5e5;}
+#sitebar .user .info.dropdown ul{display:block;}
+#sitebar .nav{min-height:200px; padding-bottom:100px; background-color:#2f4050;}
+#sitebar .nav ul i{margin-right:5px;}
+#sitebar .nav ul h3 a{display:block; position:relative; padding:0 30px 0 15px; line-height:43px; font-weight:bold; font-size:13px; color:#a7b1c2; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+#sitebar .nav ul h3 a:hover{background-color:#293846;}
+#sitebar .nav ul h3 span{position:absolute; top:15px; right:10px;}
+#sitebar .nav ul h3 span.fa-angle-left{display:inline-block;}
+#sitebar .nav ul h3 span.fa-angle-down{display:none;}
+#sitebar .nav ul ul{display:none; padding-bottom:10px;}
+#sitebar .nav ul ol a{display:block; padding:0 15px 0 32px; line-height:28px; font-size:12px; color:#a7b1c2; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;}
+#sitebar .nav ul ol a:hover{color:#fff;}
+#sitebar .nav ul.on{border-left:1px solid #189ec8; background-color:#293846;}
+#sitebar .nav ul.on h3 a{padding-left:14px; color:#fff;}
+#sitebar .nav ul.on h3 span.fa-angle-left{display:none;}
+#sitebar .nav ul.on h3 span.fa-angle-down{display:inline-block;}
+#sitebar .nav ul.on ul{display:block;}
+#main{position:absolute; right:0; top:0; width:calc(100% - 210px); height:100%; background-color:#fff;}
+#main .navtabs{position:relative; height:43px; line-height:43px; padding:0 20px; border-bottom:1px solid #e7eaec; text-align:right; font-size:12px;}
+#main .navtabs a{color:#293846;}
+#main .navtabs a:hover{color:#58666e;}
+#main .navtabs #refresh, #main .navtabs #logout{margin-left:10px;}
+#main .navtabs #menu{position:absolute; left:10px; top:0;}
+#main .navtabs #menu i.fa-indent{display:none;}
+#main .content{height:calc(100% - 75px);}
+#main .content iframe{width:100%; height:100%; border:0;}
+#main .copyright{height:30px; line-height:30px; padding:0 20px; border-top:1px solid #e7eaec; text-align:right; font-size:12px; color:#ccc;}
+
+.minibar #sitebar{width:50px;}
+.minibar #sitebar .mCustomScrollBox, .minibar #sitebar .mCSB_container{overflow:visible;}
+.minibar #sitebar .logo{display:block; padding:18px 0; text-align:center; font-weight:bold; font-size:18px; color:#fff;}
+.minibar #sitebar .user{display:none;}
+.minibar #sitebar .nav ul{position:relative; background-color:#2f4050;}
+.minibar #sitebar .nav ul h3{position:relative; z-index:666;}
+.minibar #sitebar .nav ul h3 a{padding:0 0 0 15px; font-size:16px;}
+.minibar #sitebar .nav ul h3 a i{margin:0;}
+.minibar #sitebar .nav ul h3 b, .minibar #sitebar .nav ul h3 span{display:none!important;}
+.minibar #sitebar .nav ul ul{position:absolute; z-index:100; left:50px; top:0; width:150px; padding:10px 0; background-color:#293846;}
+.minibar #sitebar .nav ul ol a{padding:0 10px 0 15px;}
+.minibar #sitebar .nav ul.on h3 a{padding-left:14px;}
+.minibar #sitebar .nav ul.on ul{display:none; left:49px;}
+.minibar #main{width:calc(100% - 50px);}
+.minibar #main .navtabs #menu i.fa-outdent{display:none;}
+.minibar #main .navtabs #menu i.fa-indent{display:inline-block;}
+
+.animated{-webkit-animation-duration:1s; animation-duration:1s; -webkit-animation-fill-mode:both; animation-fill-mode:both;}
+.fadeInLeft{-webkit-animation-name:fadeInLeft; animation-name:fadeInLeft;}
+@-webkit-keyframes fadeInLeft{
+	from{opacity:0; -webkit-transform:translate3d(-30px, 0, 0); transform:translate3d(-30px, 0, 0);}
+	to{opacity:1; -webkit-transform:none; transform:none;}
+}
+@keyframes fadeInLeft{
+	from{opacity:0; -webkit-transform:translate3d(-30px, 0, 0); transform:translate3d(-30px, 0, 0);}
+	to{opacity:1; -webkit-transform:none; transform:none;}
+}
